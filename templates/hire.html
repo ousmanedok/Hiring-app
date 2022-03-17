@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block page_title %}{{page_title}}{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">{{page_title}}</h1>
+  <hr class="my-4">
+  <p class="lead">Remotely.ws is a fast-growing resource to find and list remote technology jobs. We are on a mission to connect companies offering remote positions with the best tech professionals around the world. Our visitors include some of the
+    most talented Software Engineers and Architects, Quality Assurance Engineers, Product & Project Managers, Product & UI/UX Designers, DevOps Engineers, Systems Engineers and other IT professionals.</p>
+  <p class="lead">You can post a job or submit your resume or subscribe to get receive the latest remote job listings in your inbox or on your timeline. . Or you contact us by via the form below for potential business parternship/investment in this
+    early stage start-up or any other inquiry.</p>
+</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      {{ page_title}}
+    </li>
+  </ol>
+</nav>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut vulputate ipsum. Phasellus convallis, lorem nec imperdiet commodo, diam nulla iaculis nisl, et blandit eros ligula eget diam. Ut suscipit elit eget consectetur efficitur. Nullam ut
+  arcu odio. Fusce in neque pellentesque, luctus tortor at, scelerisque eros. Maecenas pulvinar erat semper lorem efficitur, eget iaculis tellus eleifend. Proin non porttitor nisi, et molestie sem. Pellentesque lacinia ante ut lacus lobortis posuere.
+  In hac habitasse platea dictumst. Nulla in diam lorem. Vestibulum varius nisi odio, a facilisis risus auctor ac.</p>
+<p>Vivamus porta tortor at dui congue, sed auctor diam scelerisque. Nullam scelerisque dolor et turpis ornare, sit amet blandit felis eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vitae
+  lorem in felis vulputate mattis eget nec purus. Phasellus libero lectus, tempor non tempor eget, scelerisque laoreet ipsum. Nulla vel viverra neque. Nunc faucibus, lacus vel vestibulum vestibulum, felis orci bibendum dui, eget mattis elit tellus ac
+  enim. Quisque convallis efficitur auctor. Quisque tempus, massa at fringilla hendrerit, velit felis cursus diam, non pretium risus lorem vitae dolor. Donec ac pretium tellus. Suspendisse ultrices semper orci, ac maximus lacus rhoncus eu. Sed metus
+  elit, pharetra at tortor ut, tincidunt accumsan ipsum. Nulla mattis commodo urna, sed suscipit mi. Donec sed arcu ac diam dapibus luctus sollicitudin vel sapien. Quisque in ultricies felis.</p>
+<p>Integer dictum neque vitae dapibus faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse id fringilla lacus, et pellentesque urna. Integer in erat tellus. Etiam pellentesque bibendum pulvinar. Cras dui libero,
+  vulputate pretium accumsan sed, rhoncus ac massa. Nam odio lorem, vestibulum ac sem ac, dignissim fermentum quam. Aliquam viverra egestas diam, a volutpat mi placerat at. In sapien tellus, feugiat at hendrerit a, bibendum sed mi.</p>
+<p>Vestibulum gravida imperdiet accumsan. Maecenas vitae ante id purus volutpat gravida at sit amet metus. Morbi non ex ut turpis tincidunt pharetra. Praesent ac tellus risus. In quis tempor dui. Fusce vitae nulla neque. Aliquam eleifend euismod nisl
+  id fermentum. Phasellus et risus suscipit, molestie nunc et, scelerisque risus.</p>
+{% endblock %}

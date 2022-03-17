@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block page_title %}{{page_title}}{% endblock %}
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">{{ page_title }}</h1>
+  <hr class="my-4">
+  <p class="lead">Recruiter Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec risus facilisis, condimentum justo vel, tristique nisi. Duis ac mi placerat, condimentum quam ut, cursus justo. Nullam eget luctus orci. Sed varius lorem et leo efficitur pharetra. Nullam pellentesque eget nulla vel elementum.</p>
+</div>
+<form>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Enter your search term" name="title" value={{searched_title}}>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="function">
+        <option value="" >Select function</option>
+        {% for k, v in functions.items %}
+          <option value={{k}} {% if k == sel_function %}selected{% endif %}>
+            {{v}}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="industry">
+        <option value="">Select industry</option>
+        {% for k,v in industries.items %}
+          <option value={{k}} {% if k == sel_industry %}selected{% endif %}>
+            {{v}}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="type">
+        <option value="">Select job type</option>
+        {% for k,v in types.items %}
+          <option value="{{ k }}" {% if k == sel_type %}selected{% endif %}>
+            {{ v }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="level">
+        <option value="">Select level</option>
+        {% for k,v in levels.items %}
+          <option value="{{ k }}" {% if k == sel_level %}selected{% endif %}>
+            {{ v }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="salary">
+        <option value="">Select salary</option>
+        {% for k,v in salaries.items %}
+          <option value="{{ k }}" {% if k == sel_salary %}selected{% endif %}>
+            {{ v }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <select class="custom-select" id="validationDefault04" name="timezone">
+        <option value="">Select timezone</option>
+        {% for k,v in timezones.items %}
+          <option value="{{ k }}" {% if k == sel_timezone %}selected{% endif %}>
+            {{ v }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit form</button>
+  <a href="{% url 'openings' %}" class="btn btn-primary">Reset</a>
+</form>
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{ message.tags }}" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+{% for job in jobs %}
+<div class="card my-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <img style="width:60px;height:60px;" src="{{ job.organization.logo.url }}" alt="" class="img-thumbnail">
+      </div>
+      <div class="col-md-6">
+        <h5 class="card-title"><a href="{{job.get_absolute_url}}">{{ job.title}}</a></h5>
+        <p class="card-text">Full-Time / Kano, Nigeria</p>
+      </div>
+      <div class="col-md-4">{{ job.created_date|naturaltime }}</div>
+    </div>
+
+  </div>
+</div>
+{% empty %}
+  <div class="lead">Sorry your search did not return any results, please try again</div>
+{% endfor %}
+
+{% endblock %}

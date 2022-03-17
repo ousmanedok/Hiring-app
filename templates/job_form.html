@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page_title %}{{page_title}}{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">{{page_title}}</h1>
+  <hr class="my-4">
+  <p class="lead">Remotely.ws is a fast-growing resource to find and list remote technology jobs. We are on a mission to connect companies offering remote positions with the best tech professionals around the world. Our visitors include some of the
+    most talented Software Engineers and Architects, Quality Assurance Engineers, Product & Project Managers, Product & UI/UX Designers, DevOps Engineers, Systems Engineers and other IT professionals.</p>
+  <p class="lead">You can post a job or submit your resume or subscribe to get receive the latest remote job listings in your inbox or on your timeline. . Or you contact us by via the form below for potential business parternship/investment in this
+    early stage start-up or any other inquiry.</p>
+</div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{ job.get_absolute_url }}">Back to Job</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      {{ page_title }}
+    </li>
+  </ol>
+</nav>
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<form action="." method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.media }}
+{% for field in form %}
+  <div class="form-group">
+    {{ field.errors }}
+    {{ field.label_tag }}
+    {% render_field field class="form-control" %}
+  </div>
+{% endfor %}
+<button type="submit" value="Submit" class="btn btn-primary mb-2">Submit</button>
+  <a href="{% url 'home' %}" class="btn btn-primary mb-2">Cancel</a>
+</form>
+
+{% endblock %}
