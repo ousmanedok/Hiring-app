@@ -1,0 +1,65 @@
+/*
+Template Name: Jobcy
+Author: Themesdesign
+Version: 1.0.0
+Website: https://themeforest.net/search/themesdesign
+Contact: themesdesign.in@gmail.com
+File: Main Css File
+*/
+
+//Fonts
+@import "static/assets/scss/custom/fonts/fonts";
+
+
+//Core files
+@import "static/bootstrap/scss/functions";
+@import "static/bootstrap/scss/variables";
+@import "static/assets/scss/variables";
+@import "static/bootstrap/scss/mixins.scss";
+@import "static/assets/scss/bootstrap";
+
+// Structure
+@import "static/assets/scss/custom/structure/topbar";
+@import "static/assets/scss/custom/structure/page-title";
+@import "static/assets/scss/custom/structure/footer";
+
+// Components
+@import "static/assets/scss/custom/components/helper";
+@import "static/assets/scss/custom/components/components";
+@import "static/assets/scss/custom/components/form";
+@import "static/assets/scss/custom/components/preloader";
+@import "static/assets/scss/custom/components/accordion";
+@import "static/assets/scss/custom/components/button";
+@import "static/assets/scss/custom/components/dropdown";
+@import "static/assets/scss/custom/components/general";
+@import "static/assets/scss/custom/components/navs-tabs";
+@import "static/assets/scss/custom/components/pagination";
+
+// Plugins
+@import "static/assets/scss/icons";
+@import "static/assets/scss/custom/plugins/select";
+@import "static/assets/scss/custom/plugins/glight-box";
+@import "static/assets/scss/custom/plugins/_select.scss";
+
+// Pages
+@import "static/assets/scss/custom/pages/home";
+@import "static/assets/scss/custom/pages/categories";
+@import "static/assets/scss/custom/pages/job-list";
+@import "static/assets/scss/custom/pages/cta";
+@import "static/assets/scss/custom/pages/process";
+@import "static/assets/scss/custom/pages/testimonial";
+@import "static/assets/scss/custom/pages/blog";
+@import "static/assets/scss/custom/pages/about";
+@import "static/assets/scss/custom/pages/service";
+@import "static/assets/scss/custom/pages/team";
+@import "static/assets/scss/custom/pages/pricing";
+@import "static/assets/scss/custom/pages/faq";
+@import "static/assets/scss/custom/pages/job-grid";
+@import "static/assets/scss/custom/pages/job-details";
+@import "static/assets/scss/custom/pages/candidate-list";
+@import "static/assets/scss/custom/pages/candidate-datails";
+@import "static/assets/scss/custom/pages/authentication";
+@import "static/assets/scss/custom/pages/coming-soon";
+@import "static/assets/scss/custom/pages/profile";
+@import "static/assets/scss/custom/pages/company-profile";
+@import "static/assets/scss/custom/pages/switcher";
