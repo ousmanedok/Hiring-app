@@ -21,9 +21,11 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(Home, self).get_context_data(**kwargs)
+
         ctx["section"] = "home"
         ctx["page_title"] = "Welcome to Hash Academy"
         ctx["meta_description"] = ""
+        ctx['jobs'] = Job.objects.all()
         return ctx
 
 
