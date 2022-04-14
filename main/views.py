@@ -141,9 +141,9 @@ class JobDetailView(DetailView):
 
 
 class SubmitResume(CreateView):
-    model = Application
+    model = Resume
     template_name = "submit_resume.html"
-    form_class = ApplicationForm
+    form_class = ResumeForm
 
     def get_context_data(self, **kwargs):
         ctx = super(SubmitResume, self).get_context_data(**kwargs)

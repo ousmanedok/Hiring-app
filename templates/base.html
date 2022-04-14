@@ -6,7 +6,7 @@
 
 
   <meta charset="utf-8" />
-  <title>Home | Jobcy - Job Listing Template | Themesdesign</title>
+  <title>{{ page_title }} | Hash Academy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content=" " />
   <meta name="keywords" content="" />
@@ -57,15 +57,14 @@
           <div class="col-md-7">
             <ul class="list-inline mb-0 text-center text-md-start">
               <li class="list-inline-item">
-                <p class="fs-13 mb-0"> <i class="mdi mdi-map-marker"></i> Your Location: <a href="javascript:void(0)" class="text-dark">New Caledonia</a></p>
+                <p class="fs-13 mb-0"> Follow us on social media</p>
               </li>
               <li class="list-inline-item">
                 <ul class="topbar-social-menu list-inline mb-0">
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i class="uil uil-whatsapp"></i></a></li>
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i class="uil uil-facebook-messenger-alt"></i></a></li>
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i class="uil uil-instagram"></i></a></li>
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i class="uil uil-envelope"></i></a></li>
-                  <li class="list-inline-item"><a href="javascript:void(0)" class="social-link"><i class="uil uil-twitter-alt"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.facebook.com/hashacademyweb3" class="social-link"><i class="uil uil-facebook"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.linkedin.com/company/hashacademyweb3/" class="social-link"><i class="uil uil-linkedin"></i></a></li>
+                  <li class="list-inline-item"><a href="https://www.instagram.com/hashacademyweb3/" class="social-link"><i class="uil uil-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="https://twitter.com/hashacademyweb3" class="social-link"><i class="uil uil-twitter"></i></a></li>
                 </ul>
               </li>
             </ul>
@@ -73,10 +72,12 @@
           <!--end col-->
           <div class="col-md-5">
             <ul class="list-inline mb-0 text-center text-md-end">
+              {% if show_sign_up %}
               <li class="list-inline-item py-2 me-2 align-middle">
                 <a href="#signupModal" class="text-dark fw-medium fs-13" data-bs-toggle="modal"><i class="uil uil-lock"></i>
                   Sign Up</a>
               </li>
+              {% endif %}
               <li class="list-inline-item align-middle">
                 <div class="dropdown d-inline-block language-switch">
                   <button type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,6 +89,7 @@
                       <img src="{% static 'assets/images/flags/us.jpg' %}" alt="user-image" class="me-1" height="12" />
                       <span class="align-middle">English</span>
                     </a>
+                    {% if show_all_lang %}
                     <!-- item-->
                     <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
                       <img src="{% static 'assets/images/flags/spain.jpg' %}" alt="user-image" class="me-1" height="12" />
@@ -108,6 +110,7 @@
                       <img src="{% static 'assets/images/flags/russia.jpg' %}" alt="user-image" class="me-1" height="12" />
                       <span class="align-middle">Russian</span>
                     </a>
+                    {% endif %}
                   </div>
                 </div>
               </li>
@@ -124,7 +127,7 @@
     <!--Navbar Start-->
     <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
       <div class="container-fluid custom-container">
-        <a class="navbar-brand text-dark fw-bold me-auto" href="index.html">
+        <a class="navbar-brand text-dark fw-bold me-auto" href="{% url 'home' %}">
           <img src="{% static 'assets/images/logo-dark.png' %}" height="22" alt="" class="logo-dark" />
           <img src="{% static 'assets/images/logo-light.png' %}" height="22" alt="" class="logo-light" />
         </a>
@@ -135,98 +138,49 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mx-auto navbar-center">
-            <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link" href="javascript:void(0)" id="homedrop" role="button" data-bs-toggle="dropdown">
-                Home <div class="arrow-down"></div>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
-                <li><a class="dropdown-item" href="index.html">Home 1</a></li>
-                <li><a class="dropdown-item" href="index-2.html">Home 2</a></li>
-                <li><a class="dropdown-item" href="index-3.html">Home 3</a></li>
-              </ul>
+            <li class="nav-item">
+              <a href="{% url 'home' %}" class="nav-link">Home</a>
             </li>
             <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link" href="javascript:void(0)" id="jobsdropdown" role="button" data-bs-toggle="dropdown">
-                Company <div class="arrow-down"></div>
+              <a class="nav-link" href="javascript:void(0)" id="aboutdropdown" role="button" data-bs-toggle="dropdown">
+                Who We Are <div class="arrow-down"></div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="jobsdropdown">
-                <li><a class="dropdown-item" href="about.html">About Us</a></li>
-                <li><a class="dropdown-item" href="services.html">Services</a></li>
-                <li><a class="dropdown-item" href="team.html">Team</a></li>
-                <li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-                <a class="dropdown-item" href="privacy-policy.html">Priacy & Policy</a>
-                <li><a class="dropdown-item" href="faqs.html">Faqs</a></li>
+              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="aboutdropdown">
+                <li><a class="dropdown-item" href="{% url 'about' %}">Hash Academy</a></li>
+                <li><a class="dropdown-item" href="{% url 'people' %}">Our People</a></li>
               </ul>
-            </li>
-            <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link" href="javascript:void(0)" id="pagesdoropdown" role="button" data-bs-toggle="dropdown">
-                Pages
-                <div class="arrow-down"></div>
-              </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-center" aria-labelledby="pagesdoropdown">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <span class="dropdown-header">Jobs</span>
-                    <div>
-                      <a class="dropdown-item" href="job-list.html">Job List</a>
-                      <a class="dropdown-item" href="job-list-2.html">Job List-2</a>
-                      <a class="dropdown-item" href="job-grid.html">Job Grid</a>
-                      <a class="dropdown-item" href="job-grid-2.html">Job Grid-2</a>
-                      <a class="dropdown-item" href="job-details.html">Job Details</a>
-                      <a class="dropdown-item" href="job-categories.html">Jobs Categories</a>
-                    </div>
-                  </div>
-                  <!--end col-->
-                  <div class="col-lg-4">
-                    <span class="dropdown-header">Candidates / Companys</span>
-                    <div>
-                      <a class="dropdown-item" href="candidate-list.html">Candidate List</a>
-                      <a class="dropdown-item" href="candidate-grid.html">Candidate Grid</a>
-                      <a class="dropdown-item" href="candidate-details.html">Candidate Details</a>
-                      <a class="dropdown-item" href="company-list.html">Company List</a>
-                      <a class="dropdown-item" href="company-details.html">Company Details</a>
-                    </div>
-                  </div>
-                  <!--end col-->
-                  <div class="col-lg-4">
-                    <span class="dropdown-header">Extra Pages</span>
-                    <div>
-                      <a class="dropdown-item" href="sign-up.html">Sign Up</a>
-                      <a class="dropdown-item" href="sign-in.html">Sign In</a>
-                      <a class="dropdown-item" href="sign-out.html">Sign Out</a>
-                      <a class="dropdown-item" href="reset-password.html">Reset Password</a>
-                      <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                      <a class="dropdown-item" href="404-error.html">404 Error</a>
-                      <a class="dropdown-item" href="components.html">Components</a>
-                    </div>
-                  </div>
-                  <!--end col-->
-                </div>
-              </div>
             </li>
             <!--end dropdown-->
             <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link" href="javascript:void(0)" id="productdropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Blog
+              <a class="nav-link" href="javascript:void(0)" id="joindropdown" role="button" data-bs-toggle="dropdown">
+                Join Hash Academy <div class="arrow-down"></div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="joindropdown">
+                <li><a class="dropdown-item" href="{% url 'openings' %}">Current Openings</a></li>
+                <li><a class="dropdown-item" href="{% url 'selection' %}">Selection Process</a></li>
+                <li><a class="dropdown-item" href="{% url 'submit_resume' %}">Submit Your Resume</a></li>
+              </ul>
+            </li>
+            <!--end dropdown-->
+            <li class="nav-item dropdown dropdown-hover">
+              <a class="nav-link" href="javascript:void(0)" id="hiredropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hire from Hash Academy
                 <div class="arrow-down"></div>
               </a>
-              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="productdropdown">
-                <li><a class="dropdown-item" href="blog.html">Blog</a></li>
-                <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                <li><a class="dropdown-item" href="blog-modern.html">Blog Modern</a></li>
-                <li><a class="dropdown-item" href="blog-masonry.html">Blog Masonry</a></li>
-                <li><a class="dropdown-item" href="blog-details.html">Blog details</a></li>
-                <li><a class="dropdown-item" href="blog-author.html">Blog Author</a></li>
+              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="hiredropdown">
+                <li><a class="dropdown-item" href="{% url 'hire' %}">Why & How</a></li>
+                <li><a class="dropdown-item" href="{% url 'share_opening' %}">Post a Job</a></li>
               </ul>
             </li>
             <!--end dropdown-->
             <li class="nav-item">
-              <a href="contact.html" class="nav-link">Contact</a>
+              <a href="{% url 'contact' %}" class="nav-link">Contact</a>
             </li>
           </ul>
           <!--end navbar-nav-->
         </div>
         <!--end navabar-collapse-->
+        {% if request.user.is_authenticated %}
         <ul class="header-menu list-inline d-flex align-items-center mb-0">
           <li class="list-inline-item dropdown me-4">
             <a href="javascript:void(0)" class="header-item noti-icon position-relative" id="notification" data-bs-toggle="dropdown" aria-expanded="false">
@@ -327,6 +281,7 @@
             </ul>
           </li>
         </ul>
+        {% endif %}
         <!--end header-menu-->
       </div>
       <!--end container-->
@@ -338,162 +293,162 @@
 
     {% endblock %}
 
-      <!-- START SUBSCRIBE -->
-      <section class="bg-subscribe">
-        <div class="container">
-          <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6">
-              <div class="text-center text-lg-start">
-                <h4 class="text-white">Get New Jobs Notification!</h4>
-                <p class="text-white-50 mb-0">Subscribe & get all related jobs notification.</p>
-              </div>
+    <!-- START SUBSCRIBE -->
+    <section class="bg-subscribe">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-lg-6">
+            <div class="text-center text-lg-start">
+              <h4 class="text-white">Get New Jobs Notification!</h4>
+              <p class="text-white-50 mb-0">Subscribe & get all related jobs notification.</p>
             </div>
-            <div class="col-lg-6">
-              <div class="mt-4 mt-lg-0">
-                <form class="subscribe-form" action="#">
-                  <div class="input-group justify-content-center justify-content-lg-end">
-                    <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
-                    <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
-                  </div>
-                </form>
-                <!--end form-->
-              </div>
-            </div>
-            <!--end col-->
           </div>
-          <!--end row-->
-        </div>
-        <!--end container-->
-        <div class="email-img d-none d-lg-block">
-          <img src="{% static 'assets/images/subscribe.png' %}" alt="" class="img-fluid">
-        </div>
-      </section>
-      <!-- END SUBSCRIBE -->
-
-      <!-- START FOOTER -->
-      <section class="bg-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="footer-item mt-4 mt-lg-0 me-lg-5">
-                <h4 class="text-white mb-4">Hash Academy</h4>
-                 <p class="text-white-50">Blockchain Talent Outsourcing and Development Company</p>
-                <p class="text-white mt-3">Follow Us on:</p>
-                <ul class="footer-social-menu list-inline mb-0">
-                  <li class="list-inline-item"><a href="https://www.facebook.com/hashacademyweb3"><i class="uil uil-facebook-f"></i></a></li>
-                       <li class="list-inline-item"><a href="https://www.linkedin.com/company/hashacademyweb3/"><i class="uil uil-linkedin-alt"></i></a></li>
-                       <li class="list-inline-item"><a href="https://www.instagram.com/hashacademyweb3/"><i class="uil uil-instagram"></i></a></li>
-                       <li class="list-inline-item"><a href="https://twitter.com/hashacademyweb3"><i class="uil uil-twitter"></i></a></li>
-                </ul>
-              </div>
+          <div class="col-lg-6">
+            <div class="mt-4 mt-lg-0">
+              <form class="subscribe-form" action="#">
+                <div class="input-group justify-content-center justify-content-lg-end">
+                  <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
+                  <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
+                </div>
+              </form>
+              <!--end form-->
             </div>
-            <!--end col-->
-            <div class="col-lg-2 col-6">
-              <div class="footer-item mt-4 mt-lg-0">
-                <p class="fs-16 text-white mb-4">Who We Are</p>
-                <ul class="list-unstyled footer-list mb-0">
-                  <li><a href="{% url 'about' %}"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
-                  <li><a href="{% url 'people' %}"><i class="mdi mdi-chevron-right"></i> Our People</a></li>
-                </ul>
-              </div>
-            </div>
-            <!--end col-->
-            <div class="col-lg-2 col-6">
-              <div class="footer-item mt-4 mt-lg-0">
-                <p class="fs-16 text-white mb-4">Join us</p>
-                <ul class="list-unstyled footer-list mb-0">
-                  <li><a href="{% url 'openings' %}"><i class="mdi mdi-chevron-right"></i> Current Openings</a></li>
-                        <li><a href="{% url 'selection' %}"><i class="mdi mdi-chevron-right"></i> Selection Process</a></li>
-                        <li><a href="{% url 'submit_resume' %}"><i class="mdi mdi-chevron-right"></i> Submit Your Resume</a></li>
-                </ul>
-              </div>
-            </div>
-            <!--end col-->
-            <div class="col-lg-2 col-6">
-              <div class="footer-item mt-4 mt-lg-0">
-                <p class="text-white fs-16 mb-4">Hire</p>
-                <ul class="list-unstyled footer-list mb-0">
-                  <li><a href="{% url 'hire' %}"><i class="mdi mdi-chevron-right"></i> Why & How</a></li>
-                        <li><a href="{% url 'share_opening' %}"><i class="mdi mdi-chevron-right"></i> Post a Job</a></li>
-                </ul>
-              </div>
-            </div>
-            <!--end col-->
-            <div class="col-lg-2 col-6">
-              <div class="footer-item mt-4 mt-lg-0">
-                <p class="fs-16 text-white mb-4">Contact us</p>
-                <ul class="list-unstyled footer-list mb-0">
-                  <li><a href="{% url 'contact' %}"><i class="mdi mdi-chevron-right"></i> Contact</a></li>
-                </ul>
-              </div>
-            </div>
-            <!--end col-->
           </div>
-          <!--end row-->
+          <!--end col-->
         </div>
-        <!--end container-->
-      </section>
-      <!-- END FOOTER -->
-
-      <!-- START FOOTER-ALT -->
-      <div class="footer-alt">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <p class="text-white-50 text-center mb-0">
-                <script>
-                  document.write(new Date().getFullYear())
-                </script> &copy; Hash Academy - Blockchain Talent Outsourcing and Development Company
-              </p>
-            </div>
-            <!--end col-->
-          </div>
-          <!--end row-->
-        </div>
-        <!--end container-->
+        <!--end row-->
       </div>
-      <!-- END FOOTER -->
+      <!--end container-->
+      <div class="email-img d-none d-lg-block">
+        <img src="{% static 'assets/images/subscribe.png' %}" alt="" class="img-fluid">
+      </div>
+    </section>
+    <!-- END SUBSCRIBE -->
 
-      <!-- Style switcher -->
-      <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
-        <div>
-          <h6>Select your color</h6>
-          <ul class="pattern list-unstyled mb-0">
-            <li>
-              <a class="color-list color1" href="javascript: void(0);" onclick="setColorGreen()"></a>
-            </li>
-            <li>
-              <a class="color-list color2" href="javascript: void(0);" onclick="setColor('blue')"></a>
-            </li>
-            <li>
-              <a class="color-list color3" href="javascript: void(0);" onclick="setColor('green')"></a>
-            </li>
-          </ul>
-          <div class="mt-3">
-            <h6>Light/dark Layout</h6>
-            <div class="text-center mt-3">
-              <!-- light-dark mode -->
-              <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3">
-                <i class="uil uil-brightness mode-dark mx-auto"></i>
-                <i class="uil uil-moon mode-light"></i>
-              </a>
-              <!-- END light-dark Mode -->
+    <!-- START FOOTER -->
+    <section class="bg-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="footer-item mt-4 mt-lg-0 me-lg-5">
+              <h4 class="text-white mb-4">Hash Academy</h4>
+              <p class="text-white-50">Blockchain Talent Outsourcing and Development Company</p>
+              <p class="text-white mt-3">Follow Us on:</p>
+              <ul class="footer-social-menu list-inline mb-0">
+                <li class="list-inline-item"><a href="https://www.facebook.com/hashacademyweb3"><i class="uil uil-facebook-f"></i></a></li>
+                <li class="list-inline-item"><a href="https://www.linkedin.com/company/hashacademyweb3/"><i class="uil uil-linkedin-alt"></i></a></li>
+                <li class="list-inline-item"><a href="https://www.instagram.com/hashacademyweb3/"><i class="uil uil-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="https://twitter.com/hashacademyweb3"><i class="uil uil-twitter"></i></a></li>
+              </ul>
             </div>
           </div>
+          <!--end col-->
+          <div class="col-lg-2 col-6">
+            <div class="footer-item mt-4 mt-lg-0">
+              <p class="fs-16 text-white mb-4">Who We Are</p>
+              <ul class="list-unstyled footer-list mb-0">
+                <li><a href="{% url 'about' %}"><i class="mdi mdi-chevron-right"></i> About Us</a></li>
+                <li><a href="{% url 'people' %}"><i class="mdi mdi-chevron-right"></i> Our People</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-2 col-6">
+            <div class="footer-item mt-4 mt-lg-0">
+              <p class="fs-16 text-white mb-4">Join us</p>
+              <ul class="list-unstyled footer-list mb-0">
+                <li><a href="{% url 'openings' %}"><i class="mdi mdi-chevron-right"></i> Current Openings</a></li>
+                <li><a href="{% url 'selection' %}"><i class="mdi mdi-chevron-right"></i> Selection Process</a></li>
+                <li><a href="{% url 'submit_resume' %}"><i class="mdi mdi-chevron-right"></i> Submit Resume</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-2 col-6">
+            <div class="footer-item mt-4 mt-lg-0">
+              <p class="text-white fs-16 mb-4">Hire</p>
+              <ul class="list-unstyled footer-list mb-0">
+                <li><a href="{% url 'hire' %}"><i class="mdi mdi-chevron-right"></i> Why & How</a></li>
+                <li><a href="{% url 'share_opening' %}"><i class="mdi mdi-chevron-right"></i> Post a Job</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--end col-->
+          <div class="col-lg-2 col-6">
+            <div class="footer-item mt-4 mt-lg-0">
+              <p class="fs-16 text-white mb-4">Contact us</p>
+              <ul class="list-unstyled footer-list mb-0">
+                <li><a href="{% url 'contact' %}"><i class="mdi mdi-chevron-right"></i> Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <!--end col-->
         </div>
-        <div class="bottom d-none d-md-block">
-          <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
-        </div>
+        <!--end row-->
       </div>
-      <!-- end switcher-->
+      <!--end container-->
+    </section>
+    <!-- END FOOTER -->
 
-      <!--start back-to-top-->
-      <button onclick="topFunction()" id="back-to-top">
-        <i class="mdi mdi-arrow-up"></i>
-      </button>
-      <!--end back-to-top-->
+    <!-- START FOOTER-ALT -->
+    <div class="footer-alt">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="text-white-50 text-center mb-0">
+              <script>
+                document.write(new Date().getFullYear())
+              </script> &copy; Hash Academy - Blockchain Talent Outsourcing and Development Company
+            </p>
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
+      </div>
+      <!--end container-->
     </div>
-    <!-- end main content-->
+    <!-- END FOOTER -->
+
+    <!-- Style switcher -->
+    <div id="style-switcher" onclick="toggleSwitcher()" style="left: -165px;">
+      <div>
+        <h6>Select your color</h6>
+        <ul class="pattern list-unstyled mb-0">
+          <li>
+            <a class="color-list color1" href="javascript: void(0);" onclick="setColorGreen()"></a>
+          </li>
+          <li>
+            <a class="color-list color2" href="javascript: void(0);" onclick="setColor('blue')"></a>
+          </li>
+          <li>
+            <a class="color-list color3" href="javascript: void(0);" onclick="setColor('green')"></a>
+          </li>
+        </ul>
+        <div class="mt-3">
+          <h6>Light/dark Layout</h6>
+          <div class="text-center mt-3">
+            <!-- light-dark mode -->
+            <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-3">
+              <i class="uil uil-brightness mode-dark mx-auto"></i>
+              <i class="uil uil-moon mode-light"></i>
+            </a>
+            <!-- END light-dark Mode -->
+          </div>
+        </div>
+      </div>
+      <div class="bottom d-none d-md-block">
+        <a href="javascript: void(0);" class="settings rounded-end"><i class="mdi mdi-cog mdi-spin"></i></a>
+      </div>
+    </div>
+    <!-- end switcher-->
+
+    <!--start back-to-top-->
+    <button onclick="topFunction()" id="back-to-top">
+      <i class="mdi mdi-arrow-up"></i>
+    </button>
+    <!--end back-to-top-->
+  </div>
+  <!-- end main content-->
 
   </div>
   <!-- END layout-wrapper -->
