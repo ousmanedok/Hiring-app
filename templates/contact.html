@@ -80,39 +80,25 @@
             <div class="section-title mt-4 mt-lg-0">
               <h3 class="title">Get in touch</h3>
               <p class="text-muted">Please get in touch to us using the contact form below.</p>
-              <form method="post" onsubmit="return validateForm()" class="contact-form mt-4" name="myForm" id="myForm">
+              <form action="{% url 'contact' %}" method="post" class="contact-form mt-4" name="myForm" id="myForm">
                 <span id="error-msg"></span>
                 <div class="row">
-                  <div class="col-lg-12">
-                    <div class="mb-3">
-                      <label for="nameInput" class="form-label">Name</label>
-                      <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name">
-                    </div>
-                  </div>
-                  <!--end col-->
+                  {% csrf_token %}
+                  {% for field in form %}
+                  {% if field.label == 'Your Email' or field.label == 'Subject' %}
                   <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="emailInput" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="emaiol" name="email" placeholder="Enter your email">
-                    </div>
-                  </div>
-                  <!--end col-->
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label for="subjectInput" class="form-label">Subject</label>
-                      <input type="text" class="form-control" id="subjectInput" name="subject" id="subject" placeholder="Enter your subject">
-                    </div>
-                  </div>
-                  <!--end col-->
+                  {% else %}
                   <div class="col-lg-12">
+                  {% endif %}
                     <div class="mb-3">
-                      <label for="meassageInput" class="form-label">Your Message</label>
-                      <textarea class="form-control" id="meassageInput" placeholder="Enter your message" name="comments" id="comments" rows="3"></textarea>
+                      {{ field.errors }}
+                      <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                      {% render_field field class="form-control" placeholder=field.label %}
                     </div>
                   </div>
-                  <!--end col-->
+                  {% endfor %}
                 </div>
-                <!--end row-->
+
                 <div class="text-end">
                   <button type="submit" id="submit" name="submit" class="btn btn-primary"> Send Message <i class="uil uil-message ms-1"></i></button>
                 </div>
@@ -161,9 +147,8 @@
     <!-- START CONTACT-PAGE -->
 
     <div class="map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d125888.29598467734!2d-13.6249344!3d9.5944704!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1649929207260!5m2!1sen!2s"
-        height="350" style="border:0;width: 100%;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d125888.29598467734!2d-13.6249344!3d9.5944704!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1649929207260!5m2!1sen!2s" height="350" style="border:0;width: 100%;" allowfullscreen=""
+        loading="lazy"></iframe>
     </div>
 
   </div>

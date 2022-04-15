@@ -206,7 +206,7 @@ class Contact(FormView):
     form_class = ContactForm
 
     def form_valid(self, form):
-        subject = "Message from Ethiogram Contact Form"
+        subject = "Message from Hash Academy Contact Form"
         from_email = form.cleaned_data.get("from_email")
         message = render_to_string(
             "partials/contact_message.html",
