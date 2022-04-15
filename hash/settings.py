@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,12 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ye=)#u*y_$pc63n+psq%=y+e28_7zh)48ydr&3%b**^-2nu6h#"
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if int(config("DEBUG", default=0)) == 1:
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -82,10 +86,15 @@ WSGI_APPLICATION = "hash.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": config("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": config("SQL_DATABASE", os.path.join(BASE_DIR, "db.sqlite3")),
+        "USER": config("SQL_USER", "user"),
+        "PASSWORD": config("SQL_PASSWORD", "password"),
+        "HOST": config("SQL_HOST", "localhost"),
+        "PORT": config("SQL_PORT", "5432"),
     }
 }
+
 
 
 # Password validation
@@ -139,9 +148,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Mailtrap setting
-EMAIL_HOST = "smtp.mailtrap.io"
-EMAIL_HOST_USER = "9e1ea2663b19d9"
-EMAIL_HOST_PASSWORD = "16883b7ccfeffc"
-EMAIL_PORT = "2525"
+if not DEBUG:
+    EMAIL_HOST = "smtp.mailtrap.io"
+    EMAIL_HOST_USER = "9e1ea2663b19d9"
+    EMAIL_HOST_PASSWORD = "16883b7ccfeffc"
+    EMAIL_PORT = "2525"
 
 DEFAULT_FROM_EMAIL = "info@dounotech.com"
