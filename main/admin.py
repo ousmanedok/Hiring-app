@@ -1,7 +1,14 @@
 from django.contrib import admin
 
-from .models import (Application, Job, Opening, Organization, Resume,
-                     TeamMember, Testimonial)
+from .models import (
+    Application,
+    Job,
+    Opening,
+    Organization,
+    Resume,
+    TeamMember,
+    Testimonial,
+)
 
 
 @admin.register(Job)

@@ -1,16 +1,29 @@
 from django.conf import settings
 from django.contrib import messages
+from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.template.loader import get_template, render_to_string
-from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  TemplateView)
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    TemplateView,
+)
 
-from .forms import (ApplicationForm, ContactForm, JobForm, OpeningForm,
-                    ResumeForm)
-from .models import (FUNCTION_CHOICES, INDUSTRY_CHOICES, LEVEL_CHOICES,
-                     TIME_ZONE_CHOICES, TYPE_CHOICES, Application, Job,
-                     Opening, Resume)
+from .forms import ApplicationForm, ContactForm, JobForm, OpeningForm, ResumeForm
+from .models import (
+    FUNCTION_CHOICES,
+    INDUSTRY_CHOICES,
+    LEVEL_CHOICES,
+    TIME_ZONE_CHOICES,
+    TYPE_CHOICES,
+    Application,
+    Job,
+    Opening,
+    Resume,
+)
 from .utils import send_email
 
 # Create your views here.
@@ -25,7 +38,7 @@ class Home(TemplateView):
         ctx["section"] = "home"
         ctx["page_title"] = "Welcome to Hash Academy"
         ctx["meta_description"] = ""
-        ctx['jobs'] = Job.objects.all()
+        ctx["jobs"] = Job.objects.all()
         return ctx
 
 

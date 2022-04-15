@@ -1,8 +1,22 @@
 from django.urls import path
 
-from .views import (About, ApplicationCreateView, Blog, Contact, Hire, Home,
-                    JobCreateView, JobDetailView, Openings, People, Privacy,
-                    Selection, ShareOpening, SubmitResume, Terms)
+from .views import (
+    About,
+    ApplicationCreateView,
+    Blog,
+    Contact,
+    Hire,
+    Home,
+    JobCreateView,
+    JobDetailView,
+    Openings,
+    People,
+    Privacy,
+    Selection,
+    ShareOpening,
+    SubmitResume,
+    Terms,
+)
 
 urlpatterns = [
     path("", Home.as_view(), name="home"),
