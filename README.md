@@ -10,7 +10,7 @@
 
 ## Start the Project
 
-1. Start the dev server: `./manage.py runserver
+1. Start the dev server: `./manage.py runserver`
 2. In your browser go to [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Coding Standard
