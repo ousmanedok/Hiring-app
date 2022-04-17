@@ -1,16 +1,29 @@
 from django.conf import settings
 from django.contrib import messages
+from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.template.loader import get_template, render_to_string
-from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  TemplateView)
+from django.template.loader import render_to_string
+from django.urls import reverse
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    TemplateView,
+)
 
-from .forms import (ApplicationForm, ContactForm, JobForm, OpeningForm,
-                    ResumeForm)
-from .models import (FUNCTION_CHOICES, INDUSTRY_CHOICES, LEVEL_CHOICES,
-                     TIME_ZONE_CHOICES, TYPE_CHOICES, Application, Job,
-                     Opening, Resume)
+from .forms import ApplicationForm, ContactForm, JobForm, OpeningForm, ResumeForm
+from .models import (
+    FUNCTION_CHOICES,
+    INDUSTRY_CHOICES,
+    LEVEL_CHOICES,
+    TIME_ZONE_CHOICES,
+    TYPE_CHOICES,
+    Application,
+    Job,
+    Opening,
+    Resume,
+)
 from .utils import send_email
 
 # Create your views here.
@@ -21,9 +34,11 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(Home, self).get_context_data(**kwargs)
+
         ctx["section"] = "home"
         ctx["page_title"] = "Welcome to Hash Academy"
         ctx["meta_description"] = ""
+        ctx["jobs"] = Job.objects.all()
         return ctx
 
 
@@ -141,9 +156,9 @@ class JobDetailView(DetailView):
 
 
 class SubmitResume(CreateView):
-    model = Application
+    model = Resume
     template_name = "submit_resume.html"
-    form_class = ApplicationForm
+    form_class = ResumeForm
 
     def get_context_data(self, **kwargs):
         ctx = super(SubmitResume, self).get_context_data(**kwargs)
@@ -204,7 +219,7 @@ class Contact(FormView):
     form_class = ContactForm
 
     def form_valid(self, form):
-        subject = "Message from Ethiogram Contact Form"
+        subject = "Message from Hash Academy Contact Form"
         from_email = form.cleaned_data.get("from_email")
         message = render_to_string(
             "partials/contact_message.html",
