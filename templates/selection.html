@@ -1,31 +1,140 @@
 {% extends 'base.html' %}
 {% block page_title %}{{page_title}}{% endblock %}
 {% block content %}
-<div class="jumbotron">
-  <h1 class="display-4">{{page_title}}</h1>
-  <hr class="my-4">
-  <p class="lead">Hash Academy is a fast-growing resource to find and list remote technology jobs. We are on a mission to connect companies offering remote positions with the best tech professionals around the world. Our visitors include some of the
-    most talented Software Engineers and Architects, Quality Assurance Engineers, Product & Project Managers, Product & UI/UX Designers, DevOps Engineers, Systems Engineers and other IT professionals.</p>
-  <p class="lead">You can post a job or submit your resume or subscribe to get receive the latest remote job listings in your inbox or on your timeline. . Or you contact us by via the form below for potential business parternship/investment in this
-    early stage start-up or any other inquiry.</p>
+<!-- START SIGN-UP MODAL -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-5">
+        <div class="position-absolute end-0 top-0 p-3">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="auth-content">
+          <div class="w-100">
+            <div class="text-center mb-4">
+              <h5>Sign Up</h5>
+              <p class="text-muted">Sign Up and get access to all the features of Hash Academy</p>
+            </div>
+            <form action="#" class="auth-form">
+              <div class="mb-3">
+                <label for="usernameInput" class="form-label">Username</label>
+                <input type="text" class="form-control" id="usernameInput" placeholder="Enter your username">
+              </div>
+              <div class="mb-3">
+                <label for="passwordInput" class="form-label">Email</label>
+                <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
+              </div>
+              <div class="mb-3">
+                <label for="emailInput" class="form-label">Password</label>
+                <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+              </div>
+              <div class="mb-4">
+                <div class="form-check"><input class="form-check-input" type="checkbox" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">I agree to the <a href="javascript:void(0)" class="text-primary form-text text-decoration-underline">Terms and conditions</a></label>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+              </div>
+            </form>
+            <div class="mt-3 text-center">
+              <p class="mb-0">Already a member ? <a href="sign-in.html" class="form-text text-primary text-decoration-underline"> Sign-in </a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end modal-body-->
+    </div>
+    <!--end modal-content-->
+  </div>
+  <!--end modal-dialog-->
 </div>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">
-      {{ page_title}}
-    </li>
-  </ol>
-</nav>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut vulputate ipsum. Phasellus convallis, lorem nec imperdiet commodo, diam nulla iaculis nisl, et blandit eros ligula eget diam. Ut suscipit elit eget consectetur efficitur. Nullam ut
-  arcu odio. Fusce in neque pellentesque, luctus tortor at, scelerisque eros. Maecenas pulvinar erat semper lorem efficitur, eget iaculis tellus eleifend. Proin non porttitor nisi, et molestie sem. Pellentesque lacinia ante ut lacus lobortis posuere.
-  In hac habitasse platea dictumst. Nulla in diam lorem. Vestibulum varius nisi odio, a facilisis risus auctor ac.</p>
-<p>Vivamus porta tortor at dui congue, sed auctor diam scelerisque. Nullam scelerisque dolor et turpis ornare, sit amet blandit felis eleifend. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vitae
-  lorem in felis vulputate mattis eget nec purus. Phasellus libero lectus, tempor non tempor eget, scelerisque laoreet ipsum. Nulla vel viverra neque. Nunc faucibus, lacus vel vestibulum vestibulum, felis orci bibendum dui, eget mattis elit tellus ac
-  enim. Quisque convallis efficitur auctor. Quisque tempus, massa at fringilla hendrerit, velit felis cursus diam, non pretium risus lorem vitae dolor. Donec ac pretium tellus. Suspendisse ultrices semper orci, ac maximus lacus rhoncus eu. Sed metus
-  elit, pharetra at tortor ut, tincidunt accumsan ipsum. Nulla mattis commodo urna, sed suscipit mi. Donec sed arcu ac diam dapibus luctus sollicitudin vel sapien. Quisque in ultricies felis.</p>
-<p>Integer dictum neque vitae dapibus faucibus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse id fringilla lacus, et pellentesque urna. Integer in erat tellus. Etiam pellentesque bibendum pulvinar. Cras dui libero,
-  vulputate pretium accumsan sed, rhoncus ac massa. Nam odio lorem, vestibulum ac sem ac, dignissim fermentum quam. Aliquam viverra egestas diam, a volutpat mi placerat at. In sapien tellus, feugiat at hendrerit a, bibendum sed mi.</p>
-<p>Vestibulum gravida imperdiet accumsan. Maecenas vitae ante id purus volutpat gravida at sit amet metus. Morbi non ex ut turpis tincidunt pharetra. Praesent ac tellus risus. In quis tempor dui. Fusce vitae nulla neque. Aliquam eleifend euismod nisl
-  id fermentum. Phasellus et risus suscipit, molestie nunc et, scelerisque risus.</p>
-{% endblock %}
+<!-- END SIGN-UP MODAL -->
+
+
+<div class="main-content">
+
+  <div class="page-content">
+
+    {% include './partials/page_title.html' %}
+
+    <!-- START SHAPE -->
+    <div class="position-relative" style="z-index: 1">
+      <div class="shape">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+          <path fill="#FFFFFF" fill-opacity="1" d="M0,192L120,202.7C240,213,480,235,720,234.7C960,235,1200,213,1320,202.7L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+        </svg>
+      </div>
+    </div>
+    <!-- END SHAPE -->
+
+
+    <!-- START PRIVACY-POLICY -->
+    <section class="section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12">
+            <h5 class="mb-4">Use for Hash Academy</h5>
+            <ul class="about-list list-unstyled text-muted mb-4 pb-2">
+              <li>
+                At Hash Academy, accessible at Website.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Hash Academy and how we use
+                If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at <b class="text-danger">Hash Academytechnologypvt.ltd.com</b>
+              </li>
+              <li>
+                If you have additional questions or require more information about our Privacy Policy
+              </li>
+              <li>
+                This privacy policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Hash Academy. This policy is not applicable to any information collected
+                offline or via channels other than this website.
+              </li>
+              <li>
+                Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity to our website with regards to the
+                information that they shared and/or collect in Hash Academy. This policy is not applicable to any information collected offline or via channels other than this website.
+              </li>
+            </ul>
+
+            <h5 class="mb-4">We use your information to :</h5>
+
+            <ul class="about-list list-unstyled text-muted mb-4 pb-2">
+              <li>
+                Digital Marketing Solutions for Tomorrow
+              </li>
+              <li>
+                Our Talented & Experienced Marketing Agency
+              </li>
+              <li>
+                It is said that song composers of the past used texts.
+              </li>
+              <li>
+                Create your own skin to match your brand
+              </li>
+            </ul>
+
+            <h5 class="mb-4">Privacy and copyright protection</h5>
+
+            <ul class="about-list list-unstyled text-muted mb-4 pb-2">
+              <li>
+                There is now an <b class="text-danger">abundance</b> of readable dummy texts. These are usually used when a text is required purely to fill a space. These alternatives to the classic Lorem Ipsum texts are often amusing and tell short,
+                funny or nonsensical stories.
+              </li>
+              <li>
+                It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text.
+              </li>
+            </ul>
+
+            <div class="text-end">
+              <a href="javascript:void(0)" class="btn btn-primary"><i class="uil uil-print"></i> Print</a>
+            </div>
+
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
+      </div>
+      <!--end container-->
+    </section>
+    <!-- END PRIVACY-POLICY -->
+
+  </div>
+  <!-- End Page-content -->
+  {% endblock %}
