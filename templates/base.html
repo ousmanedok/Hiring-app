@@ -304,13 +304,15 @@
           </div>
           <div class="col-lg-6">
             <div class="mt-4 mt-lg-0">
-              <form class="subscribe-form" action="#">
+              <form  method="post" action="{% url 'home' %}" class="subscribe-form">
+                {% csrf_token %}
                 <div class="input-group justify-content-center justify-content-lg-end">
-                  <input type="text" class="form-control" id="subscribe" placeholder="Enter your email">
-                  <button class="btn btn-primary" type="button" id="subscribebtn">Subscribe</button>
+                  <input type="email" name="email" class="form-control" id="subscribe" placeholder="Enter your email">
+                  <button class="btn btn-primary" type="submit" id="subscribebtn">Subscribe</button>
                 </div>
               </form>
               <!--end form-->
+
             </div>
           </div>
           <!--end col-->

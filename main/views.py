@@ -1,4 +1,7 @@
 from django.conf import settings
+from django.shortcuts import render
+from mailchimp_marketing import Client
+from mailchimp_marketing.api_client import ApiClientError
 from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -26,7 +29,14 @@ from .models import (
 )
 from .utils import send_email
 
+api_key = settings.MAILCHIMP_API_KEY
+server = settings.MAILCHIMP_DATA_CENTER
+list_id = settings.MAILCHIMP_EMAIL_LIST_ID
+
 # Create your views here.
+
+
+
 
 
 class Home(TemplateView):
@@ -40,6 +50,29 @@ class Home(TemplateView):
         ctx["meta_description"] = ""
         ctx["jobs"] = Job.objects.all()
         return ctx
+
+    def subscribe_email(email):
+        mailchimp = Client()
+        mailchimp.set_config({
+        "api_key": api_key,
+        "server": server,
+    })
+        member_info = {
+            "email_address": email,
+            "status": "subscribed",
+        }
+        try:
+            response = mailchimp.lists.add_list_member(list_id, member_info)
+            print("response: {}".format(response))
+        except ApiClientError as error:
+            print("An exception occurred: {}".format(error.text))
+
+    def post(self, request, **kwargs):
+        ctx = Home.get_context_data(self, **kwargs)
+        email = request.POST['email']
+        Home.subscribe_email(email)                    
+        messages.success(request, "Email received. thank You!") 
+        return render(request, "home.html", ctx)
 
 
 class About(TemplateView):
