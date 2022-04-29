@@ -140,23 +140,16 @@
             <li class="nav-item">
               <a href="{% url 'home' %}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item dropdown dropdown-hover">
-              <a class="nav-link" href="javascript:void(0)" id="aboutdropdown" role="button" data-bs-toggle="dropdown">
-                Who We Are <div class="arrow-down"></div>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="aboutdropdown">
-                <li><a class="dropdown-item" href="{% url 'about' %}">Hash Academy</a></li>
-                <li><a class="dropdown-item" href="{% url 'people' %}">Our People</a></li>
-              </ul>
+            <li class="nav-item">
+              <a href="{% url 'about' %}" class="nav-link">About Us</a>
             </li>
-            <!--end dropdown-->
             <li class="nav-item dropdown dropdown-hover">
               <a class="nav-link" href="javascript:void(0)" id="joindropdown" role="button" data-bs-toggle="dropdown">
                 Join Hash Academy <div class="arrow-down"></div>
               </a>
               <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="joindropdown">
                 <li><a class="dropdown-item" href="{% url 'openings' %}">Current Openings</a></li>
-                <li><a class="dropdown-item" href="{% url 'selection' %}">Selection Process</a></li>
+                <!-- <li><a class="dropdown-item" href="{% url 'selection' %}">Selection Process</a></li> -->
                 <li><a class="dropdown-item" href="{% url 'submit_resume' %}">Submit Your Resume</a></li>
               </ul>
             </li>
@@ -167,10 +160,11 @@
                 <div class="arrow-down"></div>
               </a>
               <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="hiredropdown">
-                <li><a class="dropdown-item" href="{% url 'hire' %}">Why & How</a></li>
+                <!-- <li><a class="dropdown-item" href="{% url 'hire' %}">Why & How</a></li> -->
                 <li><a class="dropdown-item" href="{% url 'share_opening' %}">Post a Job</a></li>
               </ul>
             </li>
+
             <!--end dropdown-->
             <li class="nav-item">
               <a href="{% url 'contact' %}" class="nav-link">Contact</a>
