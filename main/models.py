@@ -42,8 +42,9 @@ INDUSTRY_CHOICES = [
 TYPE_CHOICES = [
     ("full_time", "Full-time"),
     ("part_time", "Part-time"),
-    ("contract", "Contract/Consultancy"),
-    ("internship", "Internship"),
+    ("contract", "Contract"),
+    ("Freelance", "Freelance"),
+    ("Self_employed", "Self-employed"),
 ]
 
 LEVEL_CHOICES = [
@@ -245,3 +246,22 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class WorkExperience(models.Model):
+    title =  models.CharField(max_length=100, null=False, unique=False, blank=False)
+    company = models.CharField(max_length=100, null=False, unique=False, blank=False)
+    end_date = models.DateField(null=False, unique=False, blank=False, auto_now_add=True, editable=True)
+    is_current = models.BooleanField(null=False, unique=True, blank=False, default=True, editable=True)   
+    end_date = models.DateField(null=False, unique=False, blank=False, auto_now_add=True, editable=True)   
+    description = models.CharField(max_length=1000) 
+    company_url = models.URLField()
+    employment_type = models.CharField(max_length=20, null=False, unique=False, choices=TYPE_CHOICES)    
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_workExperiences"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True, editable=False) 
+    updated_date = models.DateTimeField(auto_now=True, editable=False)   
+
+    def __str__(self) :
+        return self.title
