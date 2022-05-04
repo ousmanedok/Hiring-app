@@ -42,9 +42,8 @@ INDUSTRY_CHOICES = [
 TYPE_CHOICES = [
     ("full_time", "Full-time"),
     ("part_time", "Part-time"),
-    ("contract", "Contract"),
-    ("Freelance", "Freelance"),
-    ("Self_employed", "Self-employed"),
+    ("contract", "Contract/Consultancy"),
+    ("internship", "Internship"),
 ]
 
 LEVEL_CHOICES = [
@@ -249,19 +248,19 @@ class TeamMember(models.Model):
 
 
 class WorkExperience(models.Model):
-    title =  models.CharField(max_length=100, null=False, unique=False, blank=False)
-    company = models.CharField(max_length=100, null=False, unique=False, blank=False)
-    end_date = models.DateField(null=False, unique=False, blank=False, auto_now_add=True, editable=True)
-    is_current = models.BooleanField(null=False, unique=True, blank=False, default=True, editable=True)   
-    end_date = models.DateField(null=False, unique=False, blank=False, auto_now_add=True, editable=True)   
-    description = models.CharField(max_length=1000) 
+    title =  models.CharField(max_length=300)
+    company = models.CharField(max_length=100)
+    start_date = models.DateField()
+    is_current = models.BooleanField(default=True)   
+    end_date = models.DateField()   
+    description = models.TextField(max_length=1000) 
     company_url = models.URLField()
-    employment_type = models.CharField(max_length=20, null=False, unique=False, choices=TYPE_CHOICES)    
+    employment_type = models.CharField(max_length=20, choices=TYPE_CHOICES)    
     created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_workExperiences"
+        User, on_delete=models.CASCADE, related_name="user_experiences"
         )   
-    created_date = models.DateTimeField(auto_now_add=True, editable=False) 
-    updated_date = models.DateTimeField(auto_now=True, editable=False)   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
 
     def __str__(self) :
         return self.title
