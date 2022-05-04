@@ -245,3 +245,19 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Publication(models.Model):
+    title =  models.CharField(max_length=300)
+    publication_publisher = models.CharField(max_length=100, null=True,)
+    publication_url = models.URLField(null=True)
+    publication_date = models.DateField(null=True)   
+    description = models.TextField(null=True, max_length=1000)     
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_publications"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
+
+    def __str__(self) :
+        return self.title
