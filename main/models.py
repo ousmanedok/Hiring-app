@@ -245,3 +245,28 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Certification(models.Model):
+    name = models.CharField(max_length=100)
+    issuer = models.CharField(max_length=100)
+    will_expire = models.BooleanField(default=True)
+    issue_date = models.DateField()
+    expiry_date = models.DateField(null=True)
+    credential_id = models.CharField(null=True, max_length=100)
+    credential_url = models.URLField(null=True)
+    description = models.TextField(null=True, max_length=1000)
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_certifications"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
+
+    def __str__(self):
+        return self.name
+
+
+
+
+
+
