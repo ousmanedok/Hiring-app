@@ -8,6 +8,7 @@ from .models import (
     Resume,
     TeamMember,
     Testimonial,
+    FAQ
 )
 
 
@@ -54,4 +55,9 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(TeamMember)
 class TeamMemberAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
     pass

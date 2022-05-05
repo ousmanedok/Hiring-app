@@ -63,6 +63,11 @@ TIME_ZONE_CHOICES = [
     (3, "UTC+3"),
 ]
 
+# Note: Placeholder categories to be changed later
+FAQ_CATEGORY_CHOICES = [
+    ('category1', 'Category 1'),
+    ('category2', 'Category 2'),
+]
 
 class Organization(models.Model):
     name = models.CharField(max_length=200)
@@ -245,3 +250,15 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=300)
+    answer = models.TextField()
+    category = models.CharField(max_length=100, choices=FAQ_CATEGORY_CHOICES)
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.question 
+
+
