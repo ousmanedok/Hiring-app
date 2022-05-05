@@ -5,6 +5,7 @@ from .models import (
     Job,
     Opening,
     Organization,
+    Patent,
     Resume,
     TeamMember,
     Testimonial,
@@ -54,4 +55,9 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(TeamMember)
 class TeamMemberAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Patent)
+class PatentAdmin(admin.ModelAdmin):
     pass
