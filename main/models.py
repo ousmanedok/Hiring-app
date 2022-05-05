@@ -245,3 +245,17 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+class Award(models.Model):
+    title = models.CharField(max_length=100)
+    # associated_with = 
+    issuer = models.CharField(max_length=100)
+    issue_date = models.DateTimeField()
+    description = models.TextField()
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_awards"
+    )
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+    def __str__(self):
+        return self.title
