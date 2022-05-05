@@ -248,7 +248,7 @@ class TeamMember(models.Model):
 
 class Introduction(models.Model):
     summary = models.TextField()
-    created_by = models.ForeignKey(
+    created_by = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="user_introductions"
     )
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
