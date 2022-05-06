@@ -258,10 +258,10 @@ class Patent(models.Model):
     patent_title =  models.CharField(max_length=300, unique=True)
     patent_office = models.CharField(max_length=100, unique=True)
     patient_url = models.URLField()
-    patent_number = models.CharField(max_length=100)
-    patent_state = models.CharField(unique=True, max_length=50, choices=PATENT_CHOICES)
-    patent_date = models.DateField(unique=True)
-    description = models.TextField(max_length=1000)     
+    patent_number = models.CharField(unique=True, max_length=100)
+    patent_state = models.CharField(max_length=50, choices=PATENT_CHOICES)
+    patent_date = models.DateField()
+    description = models.TextField(null=True, blank=True, max_length=1000)     
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_patents"
         )   
@@ -271,7 +271,7 @@ class Patent(models.Model):
     def __str__(self) :
         return self.patent_title
 
-        
+
 class WorkExperience(models.Model):
     title =  models.CharField(max_length=300)
     company = models.CharField(max_length=100)
