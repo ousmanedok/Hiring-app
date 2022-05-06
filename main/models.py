@@ -275,8 +275,8 @@ class Profile(models.Model):
         upload_to="team/photos/%Y/%m/%d/",
         validators=[validate_image_file],
     )
-    created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_profiles"
+    created_by = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_profile"
     )
     created_date = models.DateTimeField(auto_now_add=True, editable=False)
     updated_date = models.DateTimeField(auto_now=True, editable=False)
