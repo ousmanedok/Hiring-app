@@ -250,11 +250,11 @@ class Education(models.Model):
     school_university = models.CharField(max_length=100)
     field_of_study = models.CharField(max_length=100)
     degree = models.CharField(max_length=100)
-    grade = models.CharField(max_length=100)
-    start_date = models.DateField(blank=True, null=True)
-    is_current = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
-    description = models.TextField()
+    grade = models.CharField(blank=True, null=True, max_length=100)
+    start_date = models.DateField()
+    is_current = models.BooleanField(default=True)
+    end_date = models.DateField()
+    description = models.TextField(blank=True, null=True, max_length=1000)
     school_website_url = models.URLField(blank=True, null=True)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_educations"
