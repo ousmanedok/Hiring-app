@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "main.apps.MainConfig",
+    "accounts.apps.AccountsConfig",
     "widget_tweaks",
     "ckeditor",
     "taggit",
