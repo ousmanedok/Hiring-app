@@ -270,10 +270,10 @@ class Certification(models.Model):
     issuer = models.CharField(max_length=100)
     will_expire = models.BooleanField(default=True)
     issue_date = models.DateField()
-    expiry_date = models.DateField(null=True)
-    credential_id = models.CharField(null=True, max_length=100)
-    credential_url = models.URLField(null=True)
-    description = models.TextField(null=True, max_length=1000)
+    expiry_date = models.DateField(null=True, blank=True)
+    credential_id = models.CharField(null=True, blank=True, max_length=100)
+    credential_url = models.URLField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=1000)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_certifications"
         )
