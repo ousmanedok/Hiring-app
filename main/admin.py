@@ -9,6 +9,7 @@ from .models import (
     TeamMember,
     Testimonial,
     Certification,
+    WorkExperience,
 )
 
 
@@ -58,9 +59,12 @@ class TeamMemberAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Certification)
-class CertificationAdmin(admin.ModelAdmin):
+@admin.register(WorkExperience)
+class WorkExperienceAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    pass
 
