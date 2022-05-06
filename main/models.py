@@ -264,3 +264,21 @@ class Education(models.Model):
 
     def __str__(self):
         return self.school_university
+
+class WorkExperience(models.Model):
+    title =  models.CharField(max_length=300)
+    company = models.CharField(max_length=100)
+    start_date = models.DateField()
+    is_current = models.BooleanField(default=True)   
+    end_date = models.DateField()   
+    description = models.TextField(max_length=1000) 
+    company_url = models.URLField()
+    employment_type = models.CharField(max_length=20, choices=TYPE_CHOICES)    
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_experiences"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
+
+    def __str__(self) :
+        return self.title
