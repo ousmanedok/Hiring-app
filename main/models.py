@@ -275,8 +275,8 @@ class Education(models.Model):
     grade = models.CharField(blank=True, null=True, max_length=100)
     start_date = models.DateField()
     is_current = models.BooleanField(default=True)
-    end_date = models.DateField()
-    description = models.TextField(blank=True, null=True, max_length=1000)
+    end_date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     school_website_url = models.URLField(blank=True, null=True)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_educations"
