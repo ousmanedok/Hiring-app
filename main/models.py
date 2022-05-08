@@ -66,8 +66,8 @@ TIME_ZONE_CHOICES = [
 
 # Note: Placeholder categories to be changed later
 FAQ_CATEGORY_CHOICES = [
-    ('category1', 'Category 1'),
-    ('category2', 'Category 2'),
+    ("category1", "Category 1"),
+    ("category2", "Category 2"),
 ]
 
 
@@ -147,13 +147,7 @@ class Job(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse(
-            "view_job",
-            kwargs={
-                "pk": self.pk,
-                "slug": self.slug,
-            },
-        )
+        return reverse("view_job", kwargs={"pk": self.pk, "slug": self.slug,},)
 
     class Meta:
         ordering = ["deadline", "title"]
@@ -255,13 +249,11 @@ class Testimonial(models.Model):
         return self.name
 
 
-
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     photo = models.ImageField(
-        upload_to="team/photos/%Y/%m/%d/",
-        validators=[validate_image_file],
+        upload_to="team/photos/%Y/%m/%d/", validators=[validate_image_file],
     )
     linkedin = models.URLField(blank=True, null=True)
 
@@ -280,7 +272,7 @@ class Introduction(models.Model):
     def __str__(self):
         return self.summary
 
-      
+
 class FAQ(models.Model):
     question = models.CharField(max_length=300, unique=True)
     answer = models.TextField()
@@ -289,27 +281,27 @@ class FAQ(models.Model):
     updated_date = models.DateTimeField(auto_now=True, editable=False)
 
     def __str__(self):
-        return self.question 
+        return self.question
 
 
 class Patent(models.Model):
-    patent_title =  models.CharField(max_length=300, unique=True)
+    patent_title = models.CharField(max_length=300, unique=True)
     patent_office = models.CharField(max_length=100, unique=True)
     patent_url = models.URLField()
     patent_number = models.CharField(unique=True, max_length=100)
     patent_state = models.CharField(max_length=50, choices=PATENT_CHOICES)
     patent_date = models.DateField()
-    description = models.TextField(null=True, blank=True, max_length=1000)     
+    description = models.TextField(null=True, blank=True)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_patents"
-        )   
-    created_date = models.DateTimeField() 
-    updated_date = models.DateTimeField()   
+    )
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
 
-    def __str__(self) :
+    def __str__(self):
         return self.patent_title
 
-      
+
 class Profile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -328,8 +320,7 @@ class Profile(models.Model):
     availability = models.IntegerField(choices=AVAILABILITY_CHOICES)
     contact_future_opportunities = models.BooleanField(default=True)
     photo = models.ImageField(
-        upload_to="team/photos/%Y/%m/%d/",
-        validators=[validate_image_file],
+        upload_to="team/photos/%Y/%m/%d/", validators=[validate_image_file],
     )
     created_by = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="user_profile"
@@ -340,40 +331,39 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
-      
+
 class Publication(models.Model):
-    title =  models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
     publication_publisher = models.CharField(max_length=100, null=True, blank=True)
     publication_url = models.URLField(null=True, blank=True)
-    publication_date = models.DateField(null=True, blank=True)   
-    description = models.TextField(null=True, blank=True, max_length=1000)     
+    publication_date = models.DateField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=1000)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_publications"
-        )   
-    created_date = models.DateTimeField(auto_now_add=True) 
-    updated_date = models.DateTimeField(auto_now=True)   
-
-    def __str__(self) :
-        return self.title
-
-      
-
-class WorkExperience(models.Model):
-    title =  models.CharField(max_length=300)
-    company = models.CharField(max_length=100)
-    start_date = models.DateField()
-    is_current = models.BooleanField(default=True)   
-    end_date = models.DateField()   
-    description = models.TextField(max_length=1000) 
-    company_url = models.URLField()
-    employment_type = models.CharField(max_length=20, choices=TYPE_CHOICES)    
-    created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user_experiences"
-        )   
-    created_date = models.DateTimeField(auto_now_add=True) 
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-    def __str__(self) :
+    def __str__(self):
+        return self.title
+
+
+class WorkExperience(models.Model):
+    title = models.CharField(max_length=300)
+    company = models.CharField(max_length=100)
+    start_date = models.DateField()
+    is_current = models.BooleanField(default=True)
+    end_date = models.DateField()
+    description = models.TextField(max_length=1000)
+    company_url = models.URLField()
+    employment_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_experiences"
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
         return self.title
 
 
@@ -388,7 +378,9 @@ class Certification(models.Model):
     description = models.TextField(null=True, blank=True, max_length=1000)
     created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="user_certifications"
-        )
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -396,7 +388,7 @@ class Certification(models.Model):
 
 class Award(models.Model):
     title = models.CharField(max_length=100)
-    associated_with =  models.ForeignKey(
+    associated_with = models.ForeignKey(
         WorkExperience, on_delete=models.CASCADE, related_name="experience_awards"
     )
     issuer = models.CharField(max_length=100)
@@ -410,4 +402,3 @@ class Award(models.Model):
 
     def __str__(self):
         return self.title
-

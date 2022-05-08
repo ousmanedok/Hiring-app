@@ -1,42 +1,25 @@
 from django.conf import settings
-from django.shortcuts import render
-from mailchimp_marketing import Client
-from mailchimp_marketing.api_client import ApiClientError
 from django.contrib import messages
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    FormView,
-    ListView,
-    TemplateView,
-)
+from django.views.generic import (CreateView, DetailView, FormView, ListView,
+                                  TemplateView)
+from mailchimp_marketing import Client
+from mailchimp_marketing.api_client import ApiClientError
 
-from .forms import ApplicationForm, ContactForm, JobForm, OpeningForm, ResumeForm
-from .models import (
-    FUNCTION_CHOICES,
-    INDUSTRY_CHOICES,
-    LEVEL_CHOICES,
-    TIME_ZONE_CHOICES,
-    TYPE_CHOICES,
-    Application,
-    Job,
-    Opening,
-    Resume,
-)
+from .forms import (ApplicationForm, ContactForm, JobForm, OpeningForm,
+                    ResumeForm)
+from .models import (FUNCTION_CHOICES, INDUSTRY_CHOICES, LEVEL_CHOICES,
+                     TIME_ZONE_CHOICES, TYPE_CHOICES, Application, Job,
+                     Opening, Resume)
 from .utils import send_email
 
 api_key = settings.MAILCHIMP_API_KEY
 server = settings.MAILCHIMP_DATA_CENTER
 list_id = settings.MAILCHIMP_EMAIL_LIST_ID
-
-# Create your views here.
-
-
-
 
 
 class Home(TemplateView):
@@ -53,14 +36,8 @@ class Home(TemplateView):
 
     def subscribe_email(email):
         mailchimp = Client()
-        mailchimp.set_config({
-        "api_key": api_key,
-        "server": server,
-    })
-        member_info = {
-            "email_address": email,
-            "status": "subscribed",
-        }
+        mailchimp.set_config({"api_key": api_key, "server": server})
+        member_info = {"email_address": email, "status": "subscribed"}
         try:
             response = mailchimp.lists.add_list_member(list_id, member_info)
             print("response: {}".format(response))
@@ -69,9 +46,9 @@ class Home(TemplateView):
 
     def post(self, request, **kwargs):
         ctx = Home.get_context_data(self, **kwargs)
-        email = request.POST['email']
-        Home.subscribe_email(email)                    
-        messages.success(request, "Email received. thank You!") 
+        email = request.POST["email"]
+        Home.subscribe_email(email)
+        messages.success(request, "Email received. thank You!")
         return render(request, "home.html", ctx)
 
 
