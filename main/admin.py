@@ -5,10 +5,16 @@ from .models import (
     Job,
     Opening,
     Organization,
+    Patent,
     Resume,
     TeamMember,
     Testimonial,
     Education,
+    Award,
+    Introduction,
+    FAQ,
+    Profile,
+    Publication,
     WorkExperience,
 )
 
@@ -58,9 +64,38 @@ class TestimonialAdmin(admin.ModelAdmin):
 class TeamMemberAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Award)
+class AwardAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Introduction)
+class IntroductionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Publication)
+class PublicationAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Patent)
+class PatentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+  pass
+
 
 @admin.register(WorkExperience)
 class WorkExperienceAdmin(admin.ModelAdmin):
