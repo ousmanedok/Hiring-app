@@ -51,6 +51,11 @@ class TeamMemberAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Award)
 class AwardAdmin(admin.ModelAdmin):
     pass
