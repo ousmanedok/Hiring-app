@@ -64,6 +64,27 @@ TIME_ZONE_CHOICES = [
 ]
 
 
+# Note: Placeholder categories to be changed later
+FAQ_CATEGORY_CHOICES = [
+    ('category1', 'Category 1'),
+    ('category2', 'Category 2'),
+]
+
+
+AVAILABILITY_CHOICES = [
+    (1, "Immediate"),
+    (2, "Less than 2 weeks"),
+    (3, " Less than 4 weeks,"),
+    (4, "More than 4 weeks"),
+]
+
+
+PATENT_CHOICES = [
+    ("issued", "Issued"),
+    ("pending", "Pending"),
+]
+
+
 class Organization(models.Model):
     name = models.CharField(max_length=200)
     logo = models.ImageField(
@@ -234,6 +255,7 @@ class Testimonial(models.Model):
         return self.name
 
 
+
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
@@ -246,6 +268,7 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
+
 class Introduction(models.Model):
     summary = models.TextField()
     created_by = models.OneToOneField(
@@ -256,6 +279,84 @@ class Introduction(models.Model):
 
     def __str__(self):
         return self.summary
+
+      
+class FAQ(models.Model):
+    question = models.CharField(max_length=300, unique=True)
+    answer = models.TextField()
+    category = models.CharField(max_length=100, choices=FAQ_CATEGORY_CHOICES)
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.question 
+
+
+class Patent(models.Model):
+    patent_title =  models.CharField(max_length=300, unique=True)
+    patent_office = models.CharField(max_length=100, unique=True)
+    patent_url = models.URLField()
+    patent_number = models.CharField(unique=True, max_length=100)
+    patent_state = models.CharField(max_length=50, choices=PATENT_CHOICES)
+    patent_date = models.DateField()
+    description = models.TextField(null=True, blank=True, max_length=1000)     
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_patents"
+        )   
+    created_date = models.DateTimeField() 
+    updated_date = models.DateTimeField()   
+
+    def __str__(self) :
+        return self.patent_title
+
+      
+class Profile(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    linkedin = models.URLField(blank=True, null=True)
+    country = CountryField(blank=True, null=True)
+    phone_number = models.CharField(max_length=30)
+    city = models.CharField(max_length=200)
+    resume = models.FileField(
+        upload_to="resumes/%Y/%m/%d/",
+        blank=True,
+        null=True,
+        validators=[validate_resume_file],
+    )
+    timezone = models.IntegerField(choices=TIME_ZONE_CHOICES)
+    availability = models.IntegerField(choices=AVAILABILITY_CHOICES)
+    contact_future_opportunities = models.BooleanField(default=True)
+    photo = models.ImageField(
+        upload_to="team/photos/%Y/%m/%d/",
+        validators=[validate_image_file],
+    )
+    created_by = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_profile"
+    )
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.name
+
+      
+class Publication(models.Model):
+    title =  models.CharField(max_length=300)
+    publication_publisher = models.CharField(max_length=100, null=True, blank=True)
+    publication_url = models.URLField(null=True, blank=True)
+    publication_date = models.DateField(null=True, blank=True)   
+    description = models.TextField(null=True, blank=True, max_length=1000)     
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_publications"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
+
+    def __str__(self) :
+        return self.title
+
+      
 
 class WorkExperience(models.Model):
     title =  models.CharField(max_length=300)
