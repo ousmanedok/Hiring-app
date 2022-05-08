@@ -269,7 +269,7 @@ class Profile(models.Model):
         validators=[validate_resume_file],
     )
     timezone = models.IntegerField(choices=TIME_ZONE_CHOICES)
-    availability = models.IntegerField(choices=AVAILABILITY_CHOICES )
+    availability = models.IntegerField(choices=AVAILABILITY_CHOICES)
     contact_future_opportunities = models.BooleanField(default=True)
     photo = models.ImageField(
         upload_to="team/photos/%Y/%m/%d/",
@@ -283,6 +283,22 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.name
+
+      
+class Publication(models.Model):
+    title =  models.CharField(max_length=300)
+    publication_publisher = models.CharField(max_length=100, null=True, blank=True)
+    publication_url = models.URLField(null=True, blank=True)
+    publication_date = models.DateField(null=True, blank=True)   
+    description = models.TextField(null=True, blank=True, max_length=1000)     
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_publications"
+        )   
+    created_date = models.DateTimeField(auto_now_add=True) 
+    updated_date = models.DateTimeField(auto_now=True)   
+
+    def __str__(self) :
+        return self.title
 
 
 class WorkExperience(models.Model):
