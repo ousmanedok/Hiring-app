@@ -63,6 +63,13 @@ TIME_ZONE_CHOICES = [
     (3, "UTC+3"),
 ]
 
+AVAILABILITY_CHOICES = [
+    (1, "Immediate"),
+    (2, "Less than 2 weeks"),
+    (3, " Less than 4 weeks,"),
+    (4, "More than 4 weeks"),
+]
+
 
 class Organization(models.Model):
     name = models.CharField(max_length=200)
@@ -247,6 +254,37 @@ class TeamMember(models.Model):
         return self.name
 
 
+class Profile(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    linkedin = models.URLField(blank=True, null=True)
+    country = CountryField(blank=True, null=True)
+    phone_number = models.CharField(max_length=30)
+    city = models.CharField(max_length=200)
+    resume = models.FileField(
+        upload_to="resumes/%Y/%m/%d/",
+        blank=True,
+        null=True,
+        validators=[validate_resume_file],
+    )
+    timezone = models.IntegerField(choices=TIME_ZONE_CHOICES)
+    availability = models.IntegerField(choices=AVAILABILITY_CHOICES)
+    contact_future_opportunities = models.BooleanField(default=True)
+    photo = models.ImageField(
+        upload_to="team/photos/%Y/%m/%d/",
+        validators=[validate_image_file],
+    )
+    created_by = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_profile"
+    )
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.name
+
+      
 class Publication(models.Model):
     title =  models.CharField(max_length=300)
     publication_publisher = models.CharField(max_length=100, null=True, blank=True)
