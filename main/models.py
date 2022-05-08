@@ -63,6 +63,14 @@ TIME_ZONE_CHOICES = [
     (3, "UTC+3"),
 ]
 
+
+# Note: Placeholder categories to be changed later
+FAQ_CATEGORY_CHOICES = [
+    ('category1', 'Category 1'),
+    ('category2', 'Category 2'),
+]
+
+
 AVAILABILITY_CHOICES = [
     (1, "Immediate"),
     (2, "Less than 2 weeks"),
@@ -260,6 +268,17 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
+      
+class FAQ(models.Model):
+    question = models.CharField(max_length=300, unique=True)
+    answer = models.TextField()
+    category = models.CharField(max_length=100, choices=FAQ_CATEGORY_CHOICES)
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.question 
+
 
 class Patent(models.Model):
     patent_title =  models.CharField(max_length=300, unique=True)
@@ -278,6 +297,7 @@ class Patent(models.Model):
     def __str__(self) :
         return self.patent_title
 
+      
 class Profile(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
