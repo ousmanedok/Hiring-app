@@ -9,6 +9,7 @@ from .models import (
     Resume,
     TeamMember,
     Testimonial,
+    FAQ,
     Profile,
     Publication,
     WorkExperience,
@@ -73,6 +74,10 @@ class PublicationAdmin(admin.ModelAdmin):
 class PatentAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+  pass
 
 @admin.register(WorkExperience)
 class WorkExperienceAdmin(admin.ModelAdmin):
