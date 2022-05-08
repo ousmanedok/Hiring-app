@@ -10,6 +10,8 @@ from .models import (
     TeamMember,
     Testimonial,
     Certification,
+    Award,
+    Introduction,
     FAQ,
     Profile,
     Publication,
@@ -62,6 +64,15 @@ class TestimonialAdmin(admin.ModelAdmin):
 class TeamMemberAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Award)
+class AwardAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Introduction)
+class IntroductionAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     pass
@@ -79,6 +90,7 @@ class PatentAdmin(admin.ModelAdmin):
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
   pass
+
 
 @admin.register(WorkExperience)
 class WorkExperienceAdmin(admin.ModelAdmin):

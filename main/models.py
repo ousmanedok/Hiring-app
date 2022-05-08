@@ -268,6 +268,18 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
+
+class Introduction(models.Model):
+    summary = models.TextField()
+    created_by = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="user_introduction"
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.summary
+
       
 class FAQ(models.Model):
     question = models.CharField(max_length=300, unique=True)
@@ -344,6 +356,7 @@ class Publication(models.Model):
     def __str__(self) :
         return self.title
 
+      
 
 class WorkExperience(models.Model):
     title =  models.CharField(max_length=300)
@@ -363,6 +376,7 @@ class WorkExperience(models.Model):
     def __str__(self) :
         return self.title
 
+
 class Certification(models.Model):
     name = models.CharField(max_length=100)
     issuer = models.CharField(max_length=100)
@@ -378,3 +392,22 @@ class Certification(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Award(models.Model):
+    title = models.CharField(max_length=100)
+    associated_with =  models.ForeignKey(
+        WorkExperience, on_delete=models.CASCADE, related_name="experience_awards"
+    )
+    issuer = models.CharField(max_length=100)
+    issue_date = models.DateTimeField()
+    description = models.TextField()
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_awards"
+    )
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
