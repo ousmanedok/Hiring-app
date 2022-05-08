@@ -268,6 +268,24 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
+class Education(models.Model):
+    school_university = models.CharField(max_length=100)
+    field_of_study = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100)
+    grade = models.CharField(blank=True, null=True, max_length=100)
+    start_date = models.DateField()
+    is_current = models.BooleanField(default=True)
+    end_date = models.DateField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    school_website_url = models.URLField(blank=True, null=True)
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_educations"
+    )
+    created_date = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_date = models.DateTimeField(auto_now=True, editable=False)
+
+    def __str__(self):
+        return self.school_university
 
 class Introduction(models.Model):
     summary = models.TextField()
