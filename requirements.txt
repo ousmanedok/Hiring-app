@@ -9,3 +9,4 @@ Pillow
 gunicorn
 psycopg2-binary
 python-decouple
+pre-commit
