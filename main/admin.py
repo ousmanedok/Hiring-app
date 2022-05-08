@@ -5,6 +5,7 @@ from .models import (
     Job,
     Opening,
     Organization,
+    Patent,
     Resume,
     TeamMember,
     Testimonial,
@@ -65,6 +66,11 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Patent)
+class PatentAdmin(admin.ModelAdmin):
     pass
 
 

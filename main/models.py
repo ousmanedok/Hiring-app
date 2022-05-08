@@ -71,6 +71,12 @@ AVAILABILITY_CHOICES = [
 ]
 
 
+PATENT_CHOICES = [
+    ("issued", "Issued"),
+    ("pending", "Pending"),
+]
+
+
 class Organization(models.Model):
     name = models.CharField(max_length=200)
     logo = models.ImageField(
@@ -241,6 +247,7 @@ class Testimonial(models.Model):
         return self.name
 
 
+
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
@@ -253,6 +260,23 @@ class TeamMember(models.Model):
     def __str__(self):
         return self.name
 
+
+class Patent(models.Model):
+    patent_title =  models.CharField(max_length=300, unique=True)
+    patent_office = models.CharField(max_length=100, unique=True)
+    patent_url = models.URLField()
+    patent_number = models.CharField(unique=True, max_length=100)
+    patent_state = models.CharField(max_length=50, choices=PATENT_CHOICES)
+    patent_date = models.DateField()
+    description = models.TextField(null=True, blank=True, max_length=1000)     
+    created_by = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_patents"
+        )   
+    created_date = models.DateTimeField() 
+    updated_date = models.DateTimeField()   
+
+    def __str__(self) :
+        return self.patent_title
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=100)
