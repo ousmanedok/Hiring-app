@@ -1,22 +1,8 @@
 from django.contrib import admin
 
-from .models import (
-    Application,
-    Job,
-    Opening,
-    Organization,
-    Patent,
-    Resume,
-    TeamMember,
-    Testimonial,
-    Education,
-    Award,
-    Introduction,
-    FAQ,
-    Profile,
-    Publication,
-    WorkExperience,
-)
+from .models import (FAQ, Application, Award, Certification, Introduction, Job,
+                     Opening, Organization, Patent, Profile, Publication,
+                     Resume, TeamMember, Testimonial, WorkExperience)
 
 
 @admin.register(Job)
@@ -69,9 +55,11 @@ class TeamMemberAdmin(admin.ModelAdmin):
 class EducationAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(Award)
 class AwardAdmin(admin.ModelAdmin):
     pass
+
 
 @admin.register(Introduction)
 class IntroductionAdmin(admin.ModelAdmin):
@@ -81,6 +69,7 @@ class IntroductionAdmin(admin.ModelAdmin):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     pass
+
 
 @admin.register(Publication)
 class PublicationAdmin(admin.ModelAdmin):
@@ -94,9 +83,14 @@ class PatentAdmin(admin.ModelAdmin):
 
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
-  pass
+    pass
 
 
 @admin.register(WorkExperience)
 class WorkExperienceAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
     pass

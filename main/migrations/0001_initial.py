@@ -53,9 +53,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "ordering": ["name"],
-            },
+            options={"ordering": ["name"],},
         ),
         migrations.CreateModel(
             name="Job",
@@ -219,8 +217,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "ordering": ["deadline", "title"],
-            },
+            options={"ordering": ["deadline", "title"],},
         ),
     ]

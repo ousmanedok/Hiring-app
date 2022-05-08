@@ -6,19 +6,36 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0009_teammember_testimonial'),
+        ("main", "0009_teammember_testimonial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='FAQ',
+            name="FAQ",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question', models.CharField(max_length=300)),
-                ('answer', models.TextField()),
-                ('category', models.CharField(choices=[('category1', 'Category 1'), ('category2', 'Category 2')], max_length=100)),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
-                ('updated_date', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("question", models.CharField(max_length=300)),
+                ("answer", models.TextField()),
+                (
+                    "category",
+                    models.CharField(
+                        choices=[
+                            ("category1", "Category 1"),
+                            ("category2", "Category 2"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                ("created_date", models.DateTimeField(auto_now_add=True)),
+                ("updated_date", models.DateTimeField(auto_now=True)),
             ],
         ),
     ]
