@@ -76,22 +76,22 @@
     <section class="section">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-12">
             <div class="card job-detail overflow-hidden">
               <div>
-                <img src="{% static 'assets/images/job-detail.jpg' %}" alt="" class="img-fluid">
+                <img src="{% static 'assets/images/job_background.png' %}" alt="" class="img-fluid">
                 <div class="job-details-compnay-profile">
-                  <img src="{% static 'assets/images/featured-job/img-10.png' %}" alt="" class="img-fluid rounded-3 rounded-3">
+                  <img src="{{job.organization.logo.url}}" alt="" class="img-fluid rounded-3 rounded-3">
                 </div>
               </div>
               <div class="card-body p-4">
                 <div>
                   <div class="row">
                     <div class="col-md-8">
-                      <h5 class="mb-1">Product Designer / UI Designer</h5>
+                      <h5 class="mb-1">{{job.title}}</h5>
                       <ul class="list-inline text-muted mb-0">
                         <li class="list-inline-item">
-                          <i class="mdi mdi-account"></i> 8 Vacancy
+                          <i class="mdi mdi-account"></i> 1 Vacancy
                         </li>
                         <li class="list-inline-item text-warning review-rating">
                           <span class="badge bg-warning">4.8</span> <i class="mdi mdi-star align-middle"></i><i class="mdi mdi-star align-middle"></i><i class="mdi mdi-star align-middle"></i><i class="mdi mdi-star align-middle"></i><i
@@ -130,80 +130,37 @@
                     <div class="col-lg-3">
                       <div class="border p-3">
                         <p class="text-muted fs-13 mb-0">Employee type</p>
-                        <p class="fw-medium mb-0">Full Time</p>
+                        <p class="fw-medium mb-0">{{ job.type }}</p>
                       </div>
                     </div>
                     <div class="col-lg-3">
                       <div class="border p-3">
-                        <p class="text-muted fs-13 mb-0">Position</p>
-                        <p class="fw-medium mb-0">Senior</p>
+                        <p class="text-muted fs-13 mb-0">Level</p>
+                        <p class="fw-medium mb-0">
+                          {% if job.level == 1 %}
+                              Entry-Level
+                            {% elif job.level == 2 %}
+                              Intermediate
+                            {% elif job.level == 3 %}
+                              Mid-Level
+                            {% elif job.level == 4 %}
+                              Senior or executive-level
+                            {% endif %}
+                        </p>
                       </div>
                     </div>
                     <div class="col-lg-3">
                       <div class="border rounded-end p-3">
                         <p class="text-muted fs-13 mb-0">Offer Salary</p>
-                        <p class="fw-medium mb-0">$2150/ Month</p>
+                        <p class="fw-medium mb-0">Undisclosed</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!--end Experience-->
-
                 <div class="mt-4">
-                  <h5 class="mb-3">Job Description</h5>
-                  <div class="job-detail-desc">
-                    <p class="text-muted mb-0">As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent. You will help the team design beautiful interfaces that solve business challenges
-                      for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big
-                      Data arenas.</p>
-                  </div>
+                  {{ job.description|safe}}
                 </div>
-
-                <div class="mt-4">
-                  <h5 class="mb-3">Responsibilities</h5>
-                  <div class="job-detail-desc mt-2">
-                    <p class="text-muted">As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.</p>
-                    <ul class="job-detail-list list-unstyled mb-0 text-muted">
-                      <li><i class="uil uil-circle"></i> Have sound knowledge of commercial activities.</li>
-                      <li><i class="uil uil-circle"></i> Build next-generation web applications with a focus on the client side</li>
-                      <li><i class="uil uil-circle"></i> Work on multiple projects at once, and consistently meet draft deadlines</li>
-                      <li><i class="uil uil-circle"></i> have already graduated or are currently in any year of study</li>
-                      <li><i class="uil uil-circle"></i> Revise the work of previous designers to create a unified aesthetic for our brand materials</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="mt-4">
-                  <h5 class="mb-3">Qualification </h5>
-                  <div class="job-detail-desc mt-2">
-                    <ul class="job-detail-list list-unstyled mb-0 text-muted">
-                      <li><i class="uil uil-circle"></i> B.C.A / M.C.A under National University course complete.</li>
-                      <li><i class="uil uil-circle"></i> 3 or more years of professional design experience</li>
-                      <li><i class="uil uil-circle"></i> have already graduated or are currently in any year of study</li>
-                      <li><i class="uil uil-circle"></i> Advanced degree or equivalent experience in graphic and web design</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="mt-4">
-                  <h5 class="mb-3">Skill & Experience</h5>
-                  <div class="job-details-desc">
-                    <ul class="job-detail-list list-unstyled mb-0 text-muted">
-                      <li><i class="uil uil-circle"></i> Understanding of key Design Principal</li>
-                      <li><i class="uil uil-circle"></i> Proficiency With HTML, CSS, Bootstrap</li>
-                      <li><i class="uil uil-circle"></i> Wordpress: 1 year (Required)</li>
-                      <li><i class="uil uil-circle"></i> Experience designing and developing responsive design websites</li>
-                      <li><i class="uil uil-circle"></i> web designing: 1 year (Preferred)</li>
-                    </ul>
-                    <div class="mt-4">
-                      <span class="badge bg-primary">PHP</span>
-                      <span class="badge bg-primary">JS</span>
-                      <span class="badge bg-primary">Marketing</span>
-                      <span class="badge bg-primary">REACT</span>
-                      <span class="badge bg-primary">PHOTOSHOP</span>
-                    </div>
-                  </div>
-                </div>
-
+                {% if show_share_button %}
                 <div class="mt-4 pt-3">
                   <ul class="list-inline mb-0">
                     <li class="list-inline-item mt-1">
@@ -220,10 +177,13 @@
                     </li>
                   </ul>
                 </div>
+                {% endif %}
               </div>
               <!--end card-body-->
             </div>
             <!--end job-detail-->
+
+            {% if related_jobs %}
 
             <div class="mt-4">
               <h5>Related Jobs</h5>
@@ -404,13 +364,16 @@
 
             </div>
 
+            {% endif%}
+            {% if show_view_more %}
             <div class="text-center mt-4">
               <a href="job-list.html" class="primary-link form-text">View More <i class="mdi mdi-arrow-right"></i></a>
             </div>
+            {% endif %}
 
           </div>
           <!--end col-->
-
+          {% if show_sidebar %}
           <div class="col-lg-4 mt-4 mt-lg-0">
             <!--start side-bar-->
             <div class="side-bar ms-lg-4">
@@ -423,7 +386,7 @@
                         <i class="uil uil-user icon bg-soft-primary"></i>
                         <div class="ms-3">
                           <h6 class="fs-14 mb-2">Job Title</h6>
-                          <p class="text-muted mb-0">Product Designer</p>
+                          <p class="text-muted mb-0">{{ job.title }}</p>
                         </div>
                       </div>
                     </li>
@@ -431,8 +394,18 @@
                       <div class="d-flex mt-4">
                         <i class="uil uil-star-half-alt icon bg-soft-primary"></i>
                         <div class="ms-3">
-                          <h6 class="fs-14 mb-2">Experience</h6>
-                          <p class="text-muted mb-0"> 0-3 Years</p>
+                          <h6 class="fs-14 mb-2">Level</h6>
+                          <p class="text-muted mb-0">
+                            {% if job.level == 1 %}
+                              Entry-Level
+                            {% elif job.level == 2 %}
+                              Intermediate
+                            {% elif job.level == 3 %}
+                              Mid-Level
+                            {% elif job.level == 4 %}
+                              Senior or executive-level
+                            {% endif %}
+                          </p>
                         </div>
                       </div>
                     </li>
@@ -441,7 +414,7 @@
                         <i class="uil uil-location-point icon bg-soft-primary"></i>
                         <div class="ms-3">
                           <h6 class="fs-14 mb-2">Location</h6>
-                          <p class="text-muted mb-0"> New york</p>
+                          <p class="text-muted mb-0"> Remote</p>
                         </div>
                       </div>
                     </li>
@@ -450,7 +423,7 @@
                         <i class="uil uil-usd-circle icon bg-soft-primary"></i>
                         <div class="ms-3">
                           <h6 class="fs-14 mb-2">Offered Salary</h6>
-                          <p class="text-muted mb-0">$35k - $45k</p>
+                          <p class="text-muted mb-0">Not defined</p>
                         </div>
                       </div>
                     </li>
@@ -459,7 +432,7 @@
                         <i class="uil uil-graduation-cap icon bg-soft-primary"></i>
                         <div class="ms-3">
                           <h6 class="fs-14 mb-2">Qualification</h6>
-                          <p class="text-muted mb-0">Bachelor Degree</p>
+                          <p class="text-muted mb-0">No qualification required</p>
                         </div>
                       </div>
                     </li>
@@ -468,7 +441,7 @@
                         <i class="uil uil-building icon bg-soft-primary"></i>
                         <div class="ms-3">
                           <h6 class="fs-14 mb-2">Industry</h6>
-                          <p class="text-muted mb-0">Private</p>
+                          <p class="text-muted mb-0">Technology</p>
                         </div>
                       </div>
                     </li>
@@ -555,6 +528,7 @@
             <!--end side-bar-->
           </div>
           <!--end col-->
+          {% endif %}
         </div>
         <!--end row-->
       </div>
