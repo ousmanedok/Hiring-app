@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block page_title %}{{page_title}}{% endblock %}
+
+{% block content %}
+<h1 class="display-5">Login</h1>
+  <hr class="my-4">
+  
+<!-- START SIGN-IN -->
+                    <section class="bg-auth">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-10 col-lg-12">
+                                    <div class="card auth-box">
+                                        <div class="row g-0">
+                                            <div class="col-lg-6 text-center">
+                                                <div class="card-body p-4">
+                                                    <div class="mt-5">
+                                                        <img src="{% static 'assets/images/auth/sign-in.png' %} " alt="" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                                            <div class="col-lg-6">
+                                                <div class="auth-content card-body p-5 h-100 text-white">
+                                                    <div class="w-100">
+                                                        <div class="text-center mb-4">
+                                                            
+                                                            <p class="text-white-70">Please, use the following form to log-in.</p>
+                                                        </div>
+
+                                                        {% if messages %}
+                                                        {% for message in messages %}
+                                                        <div class="alert {{ message.tags }}" role="alert">
+                                                        {{message}}
+                                                        </div>
+                                                        {% endfor %}
+                                                        {% endif %}
+
+                                                        <form action="./?next={{ request.META.HTTP_REFERER }}" method="post">
+                                                            {% csrf_token %}
+                                                            {% for field in form %}
+                                                            <div class="form-group">
+                                                                {{ field.errors }}
+                                                                {{ field.label_tag }}
+                                                                {% render_field field class="form-control" %}
+                                                            </div>
+                                                            {% endfor %}
+                                                            <button type="submit" value="Submit" class="btn btn-primary w-100 mb-2">Login</button>
+                                                        </form>
+
+                                        
+
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </div><!--end auth-box-->
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end container-->
+                    </section>
+                    <!-- END SIGN-IN -->
+
+{% endblock%}

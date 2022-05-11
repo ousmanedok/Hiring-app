@@ -1,11 +1,12 @@
 from ckeditor.fields import RichTextField
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django_countries.fields import CountryField
 from taggit.managers import TaggableManager
-
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 from .validators import validate_image_file, validate_resume_file
 
 # Create your models here.
