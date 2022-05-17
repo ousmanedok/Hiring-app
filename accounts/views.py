@@ -1,13 +1,10 @@
-from django.shortcuts import render
+from django.contrib import auth
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponseRedirect
-from django.contrib import auth
-from .forms import (UserLoginForm)
+from django.views.generic import FormView
 
-
-from django.views.generic import (FormView)
-
+from .forms import UserLoginForm
 
 
 # Create your views here.
@@ -25,7 +22,6 @@ class LoginView(FormView):
         ctx["page_title"] = "Login"
         ctx["meta_description"] = ""
         return ctx
-
 
     @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):

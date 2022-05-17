@@ -1,12 +1,12 @@
 from ckeditor.fields import RichTextField
-from accounts.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django_countries.fields import CountryField
 from taggit.managers import TaggableManager
-from django_countries.fields import CountryField
-from django.utils.translation import gettext_lazy as _
+
+from accounts.models import User
+
 from .validators import validate_image_file, validate_resume_file
 
 # Create your models here.
@@ -148,7 +148,13 @@ class Job(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("view_job", kwargs={"pk": self.pk, "slug": self.slug,},)
+        return reverse(
+            "view_job",
+            kwargs={
+                "pk": self.pk,
+                "slug": self.slug,
+            },
+        )
 
     class Meta:
         ordering = ["deadline", "title"]
@@ -246,20 +252,23 @@ class Testimonial(models.Model):
     organization = models.CharField(max_length=50)
     job_title = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.name
+
+def __str__(self):
+    return self.name
 
 
 class TeamMember(models.Model):
     name = models.CharField(max_length=100)
     job_title = models.CharField(max_length=100)
     photo = models.ImageField(
-        upload_to="team/photos/%Y/%m/%d/", validators=[validate_image_file],
+        upload_to="team/photos/%Y/%m/%d/",
+        validators=[validate_image_file],
     )
     linkedin = models.URLField(blank=True, null=True)
 
     def __str__(self):
         return self.name
+
 
 class Education(models.Model):
     school_university = models.CharField(max_length=100)
@@ -279,6 +288,7 @@ class Education(models.Model):
 
     def __str__(self):
         return self.school_university
+
 
 class Introduction(models.Model):
     summary = models.TextField()
@@ -339,7 +349,8 @@ class Profile(models.Model):
     availability = models.IntegerField(choices=AVAILABILITY_CHOICES)
     contact_future_opportunities = models.BooleanField(default=True)
     photo = models.ImageField(
-        upload_to="team/photos/%Y/%m/%d/", validators=[validate_image_file],
+        upload_to="team/photos/%Y/%m/%d/",
+        validators=[validate_image_file],
     )
     created_by = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="user_profile"

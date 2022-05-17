@@ -1,12 +1,12 @@
 Django
-django-widget-tweaks
-django-pure-pagination
-django-taggit
-django-ckeditor
-django-countries
-mailchimp-marketing
+django - widget - tweaks
+django - pure - pagination
+django - taggit
+django - ckeditor
+django - countries
+mailchimp - marketing
 Pillow
 gunicorn
-psycopg2-binary
-python-decouple
-pre-commit
+psycopg2 - binary
+python - decouple
+pre - commit

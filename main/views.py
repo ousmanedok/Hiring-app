@@ -5,16 +5,28 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  TemplateView)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    TemplateView,
+)
 from mailchimp_marketing import Client
 from mailchimp_marketing.api_client import ApiClientError
 
-from .forms import (ApplicationForm, ContactForm, JobForm, OpeningForm,
-                    ResumeForm)
-from .models import (FUNCTION_CHOICES, INDUSTRY_CHOICES, LEVEL_CHOICES,
-                     TIME_ZONE_CHOICES, TYPE_CHOICES, Application, Job,
-                     Opening, Resume)
+from .forms import ApplicationForm, ContactForm, JobForm, OpeningForm, ResumeForm
+from .models import (
+    FUNCTION_CHOICES,
+    INDUSTRY_CHOICES,
+    LEVEL_CHOICES,
+    TIME_ZONE_CHOICES,
+    TYPE_CHOICES,
+    Application,
+    Job,
+    Opening,
+    Resume,
+)
 from .utils import send_email
 
 api_key = settings.MAILCHIMP_API_KEY
