@@ -1,4 +1,4 @@
-# Hash Academy
+# Hiring-app
 
 ## How to Install
 
