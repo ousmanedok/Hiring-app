@@ -2,7 +2,7 @@
 
 ## How to Install
 
- 1. Clone the repository: `git clone https://github.com/54Startups/hashacademy.git`
+ 1. Clone the repository: `git@github.com:ousmanedok/hiring-app.git`
  2. Make a copy of the `env` file and rename it `.env`
  3. Add your database credentials and other env variable to this file
  4. Set up and activate a virtual environment
