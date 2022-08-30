@@ -29,14 +29,8 @@ class LoginView(FormView):
             return HttpResponseRedirect(self.get_success_url())
         return super().dispatch(self.request, *args, **kwargs)
 
-    # def get_success_url(self):
-    #     if "next" in self.request.GET and self.request.GET["next"] != "":
-    #         return self.request.GET["next"]
-    #     else:
-    #         return self.success_url
-
     def get_form_class(self):
-        return self.form_class
+        return self.form_class        
 
     def form_valid(self, form):
         auth.login(self.request, form.get_user())

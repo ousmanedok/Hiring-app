@@ -4,9 +4,6 @@
 {% block page_title %}{{page_title}}{% endblock %}
 
 {% block content %}
-<h1 class="display-5">Login</h1>
-  <hr class="my-4">
-  
 <!-- START SIGN-IN -->
                     <section class="bg-auth">
                         <div class="container">
@@ -25,20 +22,19 @@
                                                 <div class="auth-content card-body p-5 h-100 text-white">
                                                     <div class="w-100">
                                                         <div class="text-center mb-4">
-                                                            
                                                             <p class="text-white-70">Please, use the following form to log-in.</p>
                                                         </div>
-
                                                         {% if messages %}
                                                         {% for message in messages %}
-                                                        <div class="alert {{ message.tags }}" role="alert">
                                                         {{message}}
-                                                        </div>
                                                         {% endfor %}
                                                         {% endif %}
 
                                                         <form action="./?next={{ request.META.HTTP_REFERER }}" method="post">
                                                             {% csrf_token %}
+                                                            <div class="alert-danger {{ message.tags }}" role="alert-danger">
+                                                            {{form.non_field_errors}}
+                                                            </div>
                                                             {% for field in form %}
                                                             <div class="form-group">
                                                                 {{ field.errors }}
@@ -48,9 +44,7 @@
                                                             {% endfor %}
                                                             <button type="submit" value="Submit" class="btn btn-primary w-100 mb-2">Login</button>
                                                         </form>
-
-                                        
-
+                                            
                                                     </div>
                                                 </div>
                                             </div><!--end col-->
